@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="cdt.managedbuild.config.macosx.lib.debug.436661799">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.macosx.lib.debug.436661799" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/Qx7-GUI"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/Qx7-GUI/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="Qx7-GUI" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.MachO64" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.debug" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.macosx.lib.debug.436661799" name="Debug" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=" parent="cdt.managedbuild.config.macosx.lib.debug">
+					<folderInfo id="cdt.managedbuild.config.macosx.lib.debug.436661799." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.macosx.lib.debug.771353810" name="MacOSX GCC" superClass="cdt.managedbuild.toolchain.gnu.macosx.lib.debug">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.macosx.lib.debug.695733112" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.macosx.lib.debug"/>
+							<builder buildPath="${workspace_loc:/Qx7-GUI}/Debug" id="cdt.managedbuild.target.gnu.builder.macosx.lib.debug.1287800715" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.macosx.lib.debug"/>
+							<tool id="cdt.managedbuild.tool.macosx.c.linker.macosx.base.1424707588" name="MacOS X C Linker" superClass="cdt.managedbuild.tool.macosx.c.linker.macosx.base"/>
+							<tool id="cdt.managedbuild.tool.macosx.cpp.linker.macosx.base.1732698324" name="MacOS X C++ Linker" superClass="cdt.managedbuild.tool.macosx.cpp.linker.macosx.base"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.macosx.lib.debug.485913785" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.macosx.lib.debug">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.both.asm.option.include.paths.211264565" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Qx7-OpenGL}&quot;"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1108752613" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.toolmacosx.lib.debug.gnu.archiver.448843533" name="GCC Archiver" superClass="cdt.managedbuild.toolmacosx.lib.debug.gnu.archiver"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.lib.debug.1080106596" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.lib.debug">
+								<option id="gnu.cpp.compiler.macosx.lib.debug.option.optimization.level.1551442009" name="Optimization Level" superClass="gnu.cpp.compiler.macosx.lib.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
+								<option defaultValue="gnu.cpp.compiler.debugging.level.max" id="gnu.cpp.compiler.macosx.lib.debug.option.debugging.level.480591719" name="Debug Level" superClass="gnu.cpp.compiler.macosx.lib.debug.option.debugging.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option id="gnu.cpp.compiler.option.other.other.266670817" name="Other flags" superClass="gnu.cpp.compiler.option.other.other" useByScannerDiscovery="false" value="-c -fmessage-length=0 -framework GLUT -framework OpenGL -L/System/Library/Frameworks/OpenGL.framework -L/System/Library/Frameworks/GLUT.framework -lqx7 -lqx7-opengl" valueType="string"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.2096978508" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Qx7-OpenGL}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Qx7-OpenGL/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Qx7/src}&quot;"/>
+								</option>
+								<option id="gnu.cpp.compiler.option.dialect.std.1740152657" name="Language standard" superClass="gnu.cpp.compiler.option.dialect.std" useByScannerDiscovery="true" value="gnu.cpp.compiler.dialect.c++1y" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1343138951" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.macosx.lib.debug.1535313984" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.lib.debug">
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.macosx.lib.debug.option.optimization.level.1321307571" name="Optimization Level" superClass="gnu.c.compiler.macosx.lib.debug.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option defaultValue="gnu.c.debugging.level.max" id="gnu.c.compiler.macosx.lib.debug.option.debugging.level.601152757" name="Debug Level" superClass="gnu.c.compiler.macosx.lib.debug.option.debugging.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.include.paths.1923450806" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Qx7-OpenGL}&quot;"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.2097229217" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings">
+				<externalSettings containerId="Qx7-OpenGL;" factoryId="org.eclipse.cdt.core.cfg.export.settings.sipplier">
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/Qx7-OpenGL"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/Qx7-OpenGL/Debug"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="Qx7-OpenGL" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+			</storageModule>
+		</cconfiguration>
+		<cconfiguration id="cdt.managedbuild.config.macosx.lib.release.1193852412">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.macosx.lib.release.1193852412" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings>
+					<externalSetting>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="includePath" name="/Qx7-GUI"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="libraryPath" name="/Qx7-GUI/Release"/>
+						<entry flags="RESOLVED" kind="libraryFile" name="Qx7-GUI" srcPrefixMapping="" srcRootPath=""/>
+					</externalSetting>
+				</externalSettings>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.MachO64" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="a" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.staticLib" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.staticLib,org.eclipse.cdt.build.core.buildType=org.eclipse.cdt.build.core.buildType.release" cleanCommand="rm -rf" description="" id="cdt.managedbuild.config.macosx.lib.release.1193852412" name="Release" optionalBuildProperties="" parent="cdt.managedbuild.config.macosx.lib.release">
+					<folderInfo id="cdt.managedbuild.config.macosx.lib.release.1193852412." name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.macosx.lib.release.1452781839" name="MacOSX GCC" superClass="cdt.managedbuild.toolchain.gnu.macosx.lib.release">
+							<targetPlatform id="cdt.managedbuild.target.gnu.platform.macosx.lib.release.1281841660" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.macosx.lib.release"/>
+							<builder buildPath="${workspace_loc:/Qx7-GUI}/Release" id="cdt.managedbuild.target.gnu.builder.macosx.lib.release.886988088" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.macosx.lib.release"/>
+							<tool id="cdt.managedbuild.tool.macosx.c.linker.macosx.base.938200798" name="MacOS X C Linker" superClass="cdt.managedbuild.tool.macosx.c.linker.macosx.base"/>
+							<tool id="cdt.managedbuild.tool.macosx.cpp.linker.macosx.base.174835616" name="MacOS X C++ Linker" superClass="cdt.managedbuild.tool.macosx.cpp.linker.macosx.base"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.macosx.lib.release.1314143678" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.macosx.lib.release">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1373006941" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.toolmacosx.lib.release.gnu.archiver.1772148162" name="GCC Archiver" superClass="cdt.managedbuild.toolmacosx.lib.release.gnu.archiver"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.lib.release.195892037" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.macosx.lib.release">
+								<option id="gnu.cpp.compiler.macosx.lib.release.option.optimization.level.376284904" name="Optimization Level" superClass="gnu.cpp.compiler.macosx.lib.release.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
+								<option defaultValue="gnu.cpp.compiler.debugging.level.none" id="gnu.cpp.compiler.macosx.lib.release.option.debugging.level.1876760983" name="Debug Level" superClass="gnu.cpp.compiler.macosx.lib.release.option.debugging.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1192056968" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.macosx.lib.release.1804368154" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.macosx.lib.release">
+								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.macosx.lib.release.option.optimization.level.1800233306" name="Optimization Level" superClass="gnu.c.compiler.macosx.lib.release.option.optimization.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<option defaultValue="gnu.c.debugging.level.none" id="gnu.c.compiler.macosx.lib.release.option.debugging.level.770103864" name="Debug Level" superClass="gnu.c.compiler.macosx.lib.release.option.debugging.level" useByScannerDiscovery="false" valueType="enumerated"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1220891464" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="Qx7-GUI.cdt.managedbuild.target.macosx.lib.474747815" name="Static Library" projectType="cdt.managedbuild.target.macosx.lib"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.macosx.lib.release.1193852412;cdt.managedbuild.config.macosx.lib.release.1193852412.;cdt.managedbuild.tool.gnu.cpp.compiler.macosx.lib.release.195892037;cdt.managedbuild.tool.gnu.cpp.compiler.input.1192056968">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.macosx.lib.debug.436661799;cdt.managedbuild.config.macosx.lib.debug.436661799.;cdt.managedbuild.tool.gnu.c.compiler.macosx.lib.debug.1535313984;cdt.managedbuild.tool.gnu.c.compiler.input.2097229217">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.macosx.lib.release.1193852412;cdt.managedbuild.config.macosx.lib.release.1193852412.;cdt.managedbuild.tool.gnu.c.compiler.macosx.lib.release.1804368154;cdt.managedbuild.tool.gnu.c.compiler.input.1220891464">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.macosx.lib.debug.436661799;cdt.managedbuild.config.macosx.lib.debug.436661799.;cdt.managedbuild.tool.gnu.cpp.compiler.macosx.lib.debug.1080106596;cdt.managedbuild.tool.gnu.cpp.compiler.input.1343138951">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope"/>
+</cproject>
