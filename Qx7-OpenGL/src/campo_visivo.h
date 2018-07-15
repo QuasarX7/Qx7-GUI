@@ -39,7 +39,7 @@
  * @file campo_visivo.h
  * @author Dr. Domenico della Peruta
  * @date 14-01-2018
- * @version 1.0.0, 13-03-2018
+ * @version 1.0.1, 15-03-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe CampoVisivo.
  * 
@@ -103,8 +103,7 @@ namespace Grafica {
          * @param lontano
          */
         CampoVisivo(double sinistra,double destra,double sotto,double sopra,double vicino=0.0,double lontano=0.0)
-        : origineCampo(sinistra,sotto,vicino),
-        dimensioneCampo( sopra-sotto, destra-sinistra, lontano-vicino)
+        : dimensioneCampo( sopra-sotto, destra-sinistra, lontano-vicino),origineCampo(sinistra,sotto,vicino)
         {}
         
         /**

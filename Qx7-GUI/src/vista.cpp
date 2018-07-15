@@ -39,7 +39,7 @@
  * @file vista.cpp
  * @author Dr. Domenico della Peruta
  * @date 04-05-2018
- * @version 1.0.0, 08-07-2018
+ * @version 1.0.1, 15-07-2018
  * 
  * @brief File contenente l'implementazione delle metodi della classe Vista.
  * 
@@ -50,7 +50,7 @@
 using namespace GUI;
 
 Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore,const Colore& sfumatura)
-:Componente{0,campo},titolo{titoloFinestra},areaComponenti{},areaPredefinitaVista{OrigineArea{0,0},campo.dimensione()}
+:Componente{0,campo},areaComponenti{},areaPredefinitaVista{OrigineArea{0,0},campo.dimensione()},titolo{titoloFinestra}
 {
     coloreSfondo = colore;
     coloreBordoInattivo = colore.combina(sfumatura);
@@ -367,44 +367,28 @@ void Vista::inputTastieraSpeciale(const Tastiera& tastiera){
     Componente::inputTastieraSpeciale(tastiera);
 }
 
-void Vista::spostaComponenti(int dx, int dy,bool sempre){
-    if(sempre){
-        /* spostamento senza condizioni (usato solo dalla metodo stesso) */
-        areaPredefinitaVista.origine(
-            OrigineArea{
+void Vista::spostaComponenti(int dx, int dy){
+       /* spostamento senza condizioni (usato solo dalla metodo stesso) */
+
+	areaPredefinitaVista.origine(
+			OrigineArea{
                 areaPredefinitaVista.origine().x() + dx,
                 areaPredefinitaVista.origine().y() + dy
             }
-        );
-        for(size_t i=0; i < numeroFigli(); i++){
-            pComponente componente = dynamic_pointer_cast<Componente>(figlio(i));
-            if(componente != nullptr){ 
-                componente->sposta(
+	);
+	for(size_t i=0; i < numeroFigli(); i++){
+		pComponente componente = dynamic_pointer_cast<Componente>(figlio(i));
+		if(componente != nullptr){
+			componente->sposta(
                     OrigineArea{
                         componente->origine().x() + dx,
                         componente->origine().y() + dy
                     }
-                );
-            }
-        }
-        areaComponenti = estensioneAreaComponenti();
-    }else{
-        /* spostamento con condizione (usato di default) */
-        
-        // coordinate limite cursore barra verticale
-        const int altoCursoreVerticale = cursoreScorrimentoVerticale->localizzazione().y();
-        const int bassoCursoreVerticale = altoCursoreVerticale + cursoreScorrimentoVerticale->altezza();
-        // coordinate limite cursore barra orizzontale
-        const int sinitraCursoreOrizzontale = cursoreScorrimentoOrizzontale->localizzazione().x();
-        const int destraCursoreOrizzontale = sinitraCursoreOrizzontale + cursoreScorrimentoOrizzontale->lunghezza();
-        
-        bool cursoreInternoBarraVerticale = altoCursoreVerticale - dy >= 0  && bassoCursoreVerticale - dy <= area.dimensione().altezza();
-        bool cursoreInternoBarraOrizzontale = sinitraCursoreOrizzontale - dx >= 0  && destraCursoreOrizzontale - dx <= area.dimensione().lunghezza();
-        
-        spostaComponenti(dx,dy,true);
-        
-        
-    }
+
+			);
+		}
+	}
+	areaComponenti = estensioneAreaComponenti();
 }
 
 size_t Vista::passaFocusSuccessivo(){
@@ -437,7 +421,7 @@ size_t Vista::passaFocusSuccessivo(){
 
 size_t Vista::passaFocusPrecedente(){
     bool trovato = false;
-    for(size_t i=numeroFigli()-1; i > SIZE_T_MAX; i--){ // [i] = 0 -> [i--] = SIZE_T_MAX
+    for(size_t i=numeroFigli()-1; i > std::numeric_limits<size_t>::max(); i--){ // [i] = 0 -> [i--] = SIZE_T_MAX
         if(etichetta(figlio(i)))
             continue;
         auto componente = dynamic_pointer_cast<Componente>(figlio(i));

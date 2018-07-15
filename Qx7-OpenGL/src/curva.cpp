@@ -40,7 +40,7 @@
  * @file curva.cpp
  * @author Dr. Domenico della Peruta
  * @date 20-04-2018
- * @version 1.0.1, 28-04-2018
+ * @version 1.0.2, 15-07-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Curva.
  * 
@@ -54,8 +54,7 @@ using namespace Grafica;
 
 Curva::Curva(const string& funzioneX,const Area& regione, const Punto& origine, size_t unitaPixel,const Colore& colore)
 :Figura{Punto(regione.origine().x(),regione.origine().y()),colore,colore},
-    unita{unitaPixel},
-    funzione{funzioneX},
+    funzione{funzioneX},unita{unitaPixel},
     dominio{regione.dimensione()}, origineAssi{origine}
 {
 }

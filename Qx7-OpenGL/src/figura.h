@@ -40,7 +40,7 @@
  * @file azioni.h
  * @author Dr. Domenico della Peruta
  * @date 23-03-2018
- * @version 1.0.0, 25-03-2018
+ * @version 1.0.1, 15-07-2018
  * 
  * @brief File contenente la definizione e l'implementazione dei metodi della classe Figura.
  * 
@@ -184,7 +184,7 @@ namespace Grafica {
         Colore coloreSfondo, coloreBordo;
         double spessoreBordo;
         
-        double angoloRotazioneZ,angoloRotazioneY,angoloRotazioneX, scala;
+        double angoloRotazioneX,angoloRotazioneY,angoloRotazioneZ, scala;
         Vettore trasla;
         
         Tempo vita = 0ms;

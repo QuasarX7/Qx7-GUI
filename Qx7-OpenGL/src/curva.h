@@ -40,7 +40,7 @@
  * @file curva.h
  * @author Dr. Domenico della Peruta
  * @date 20-04-2018
- * @version 1.0.1, 28-04-2018
+ * @version 1.0.2, 15-07-2018
  * 
  * @brief File contenente la definizione e l'implementazione dei metodi della classe Curva.
  * 

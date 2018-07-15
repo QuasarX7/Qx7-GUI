@@ -40,7 +40,7 @@
  * @file finestra.h
  * @author Dr. Domenico della Peruta
  * @date 20-02-2018
- * @version 1.5.0, 24-06-2018
+ * @version 1.5.1, 15-07-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Finestra.
  * 
@@ -345,7 +345,7 @@ namespace Grafica {
         
         int altezzaFinestra, lunghezzaFinestra;
         int coordinataX, coordinataY;
-        int id_finestra;
+        int id_finestra = -1;
         
         bool creata=false; ///< determina se una finestra è associata ad un'istanza OpenGL
     

@@ -39,7 +39,7 @@
  * @file componente.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.0, 03-06-2018
+ * @version 1.0.2, 15/07/2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Componente.
  * 

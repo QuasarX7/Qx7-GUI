@@ -40,7 +40,7 @@
  * @file azioni.cpp
  * @author Dr. Domenico della Peruta
  * @date 23-03-2018
- * @version 1.0.0, 25-03-2018
+ * @version 1.0.2, 15-07-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Figura.
  * 

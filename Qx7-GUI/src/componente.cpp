@@ -39,7 +39,7 @@
  * @file componente.cpp
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.0, 
+ * @version 1.0.2, 15/07/2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Componente.
  * 
@@ -113,7 +113,7 @@ pComponente Componente::primoComponenteAssociato(){
 }
    
 pComponente Componente::ultimoComponenteAssociato(){
-    for(size_t i=numeroFigli()-1; i < SIZE_T_MAX; i--){ // [i] = 0 -> [i--] = SIZE_T_MAX
+    for(size_t i=numeroFigli()-1; i < std::numeric_limits<size_t>::max(); i--){ // [i] = 0 -> [i--] = SIZE_T_MAX
         auto componente = dynamic_pointer_cast<Componente>(figlio(i));
         if(componente != nullptr){
             return componente;
@@ -244,4 +244,5 @@ Colore Componente::colore(ColoreComponente componente)const{
         case MOUSE:    return coloreEvidenza;
         case INATTIVO: return coloreDisattivo;   
     };
+    return NERO;
 }

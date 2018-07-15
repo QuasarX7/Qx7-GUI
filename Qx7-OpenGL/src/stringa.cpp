@@ -39,7 +39,7 @@
  * @file stringa.cpp
  * @author Dr. Domenico della Peruta
  * @date 14-03-2018
- * @version 1.0.1, 05-05-2018
+ * @version 1.0.3, 15-07-2018
  * 
  * @brief File contenente l'implementazione della classe Stringa.
  * 
@@ -88,6 +88,7 @@ size_t Stringa::altezza()const{
         case HELVETICA_12:      return 14;
         case HELVETICA_18:      return 20;
     };
+    return std::numeric_limits<size_t>::min();
 }
 
 

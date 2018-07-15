@@ -39,7 +39,7 @@
  * @file finestra.cpp
  * @author Dr. Domenico della Peruta
  * @date 10-07-2018
- * @version 1.3.2, 04-05-2018
+ * @version 1.5.1, 15-07-2018
  * 
  * @brief File contenente i metodi per l'implementazione della classe Finestra.
  */

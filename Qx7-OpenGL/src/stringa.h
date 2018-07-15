@@ -39,7 +39,7 @@
  * @file stringa.h
  * @author Dr. Domenico della Peruta
  * @date 14-03-2018
- * @version 1.0.2, 07-05-2018
+ * @version 1.0.3, 15-07-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Stringa.
  * 
@@ -86,7 +86,7 @@ namespace Grafica {
          * @param lunghezzaRiga permette di creare un blocco di testo
          */
         Stringa(const string& testo,const Punto& origine, const Colore& colore,size_t lunghezzaRiga =-1)
-        : Figura{origine,colore,colore},_testo{testo},font{GENERICO_PICCOLO}, limite{lunghezzaRiga} {}
+        : Figura{origine,colore,colore},_testo{testo}, limite{lunghezzaRiga},font{GENERICO_PICCOLO} {}
         /**
          * Costruttore di copia
          * @param copia

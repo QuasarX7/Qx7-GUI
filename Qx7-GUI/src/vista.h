@@ -39,7 +39,7 @@
  * @file vista.h
  * @author Dr. Domenico della Peruta
  * @date 04-05-2018
- * @version 1.0.0, 08-07-2018
+ * @version 1.0.1, 15-07-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Vista.
  * 
@@ -259,7 +259,7 @@ namespace GUI {
          */
         void disegnaBarraScorrimentoOrizzontale()const;
         
-        void spostaComponenti(int dx, int dy,bool sempre=false);
+        void spostaComponenti(int dx, int dy);
         
         /* SLOT */
         virtual void passaggioMouse(const Cursore& mouse,Stato stato)override; // segnale 'coordinateMouse'
