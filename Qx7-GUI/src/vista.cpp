@@ -111,7 +111,6 @@ Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore
     );
     
     
-    //scorrimentoOrizzontale;
     /* SEGNALI */
     click.connetti(this, &Vista::azione);
     coordinateMouse.connetti(this, &Vista::passaggioMouse);
@@ -499,6 +498,13 @@ Area Vista::estensioneAreaComponenti()const{
     if(y > yMax)
         yMax = y;
     
+    // aggiungi lo spessore della barra
+    if(yMax > areaPredefinitaVista.origine().y() + areaPredefinitaVista.dimensione().altezza())
+    	yMax += (int)(spessoreBarra)+ 5;
+    if(xMax > areaPredefinitaVista.origine().x() + areaPredefinitaVista.dimensione().lunghezza())
+        xMax += (int)(spessoreBarra)+ 5;
+
+
     return Area{xMin, yMin, yMax-yMin, xMax-xMin};
 }
         

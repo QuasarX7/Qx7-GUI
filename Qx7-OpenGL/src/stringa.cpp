@@ -67,7 +67,7 @@ void Stringa::disegna()const{
     trasforma(Vettore{posizione.x(),posizione.y()});
    
     coloreSfondo.disegna();
-    
+
     size_t i=0;
     for(Testo riga : _testo.incolonna(limite).righe()){
         glRasterPos2f(posizione.x(),  posizione.y()+(i++)*altezza());

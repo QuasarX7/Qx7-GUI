@@ -40,116 +40,40 @@ const size_t ID_12 = 3011;
 int main(int argc, char* argv[]) {
 
     Applicazione app(argc,argv);
-    pVista vista = Utili::crea<Vista>(
-        "O.o",
+    pVista vistaTest1 = Utili::crea<Vista>(
+        "Test 1",
         Area{
             OrigineArea{25,25},
             DimensioneArea{500,500}
         }
     );
-    pVista vista2 = Utili::crea<Vista>(
-        "^_^",
-        Area{
-            OrigineArea{100,100},
-            DimensioneArea{400,800}
-        }
-        ,BLU
 
+    pEtichetta etichettaTitolo1  = Oggetto::crea<Etichetta>(
+    		vistaTest1,
+			ID_1,
+			"Test Vista",
+			OrigineArea{200,0},
+			ARANCIONE,
+			TipoCarattere::TIMES_ROMAN_24
+	);
+/*
+    pEtichetta etichettaDescrizione1  = Oggetto::crea<Etichetta>(
+        	vistaTest1,
+    		ID_2,
+    		"Teste sulla vista:\n "
+    		"verifica la corretta implementazione delle barre laterali di scorrimento,\n"
+    		"quando i componenti aggiunti sono fuori dal campo visivo predefinito della\n"
+    		"finestra.",
+    		OrigineArea{200,80},
+    		ROSSO,
+    		TipoCarattere::GENERICO_GRANDE
     );
-
-    pVista vista3 = Utili::crea<Vista>(
-        ".....",
-        Area{
-            OrigineArea{200,200},
-            DimensioneArea{500,500}
-        },
-        GIALLO,
-         ROSSO
-    );
-    pEtichetta etichetta  = Oggetto::crea<Etichetta>(vista2,ID_1,"Prima Etichetta",OrigineArea{-100,200},ROSSO,TipoCarattere::TIMES_ROMAN_24);
-    pEtichetta etichetta2 = Oggetto::crea<Etichetta>(vista2,ID_2,"Prima Etichetta",OrigineArea{250,100},ROSSO,TipoCarattere::TIMES_ROMAN_24);
-    pEtichetta etichetta3 = Oggetto::crea<Etichetta>(vista3,ID_3,"Prima Etichetta",OrigineArea{100,200},ROSSO,TipoCarattere::TIMES_ROMAN_24);
-
-    pCampo campo  = Oggetto::crea<Campo>(vista,ID_4,OrigineArea{-100,-140},(size_t)15,Maschera{"**/**/****",'*'});
-    pCampo campo2 = Oggetto::crea<Campo>(vista2,ID_5,OrigineArea{100,100},(size_t)15);
-    pCampo campo3 = Oggetto::crea<Campo>(vista2,ID_6,OrigineArea{100,200},(size_t)15);
-    pCampo campo4 = Oggetto::crea<Campo>(vista2,ID_12,OrigineArea{-100,-400},(size_t)15);
-
-    pAreaTesto area = Oggetto::crea<AreaTesto>(vista2,ID_11,OrigineArea{100,270},(size_t)10,(size_t)5);
-    campo3->comportamentoFocusAcquisito(
-        [](pVista vista){
-            pCampo campo3 = vista->componente<Campo>(ID_6);
-            pCampo campo2 = vista->componente<Campo>(ID_5);
-            campo3->testo(campo2->testo());
-        }
-    );
-
-    pPulsante pulsante = Oggetto::crea<Pulsante>(vista2,ID_10,"ciao mond",Area{300,270,15,80});
-    //pulsante->colora(NERO,BIANCO,ROSSO);
-    pulsante->comportamentoClick(
-        [](pVista vista){
-            pCampo campo2 = vista->componente<Campo>(ID_5);
-            pCampo campo3 = vista->componente<Campo>(ID_6);
-
-            campo2->testo(campo3->testo());
-        }
-    );
+*/
+    pCampo campo1  = Oggetto::crea<Campo>(vistaTest1,ID_3,OrigineArea{-100,-140},(size_t)15,Maschera{"**/**/****",'*'});
+    pCampo campo2  = Oggetto::crea<Campo>(vistaTest1,ID_4,OrigineArea{600,700},(size_t)15);
 
 
-
-
-    auto xxx = [](int x){
-        switch (x) {
-            case 100:
-                cout << "ciao mondo"<< endl;
-                break;
-            case 101:
-                cout << "pippoooo"<< endl;
-                break;
-            case 200:
-                cout << "maria"<< endl;
-                break;
-
-            case 201:
-                cout << "gigginooooo"<< endl;
-                break;
-            case 300:
-                cout << "ok"<< endl;
-                break;
-            case 600:
-                cout << ":'("<< endl;
-
-                break;
-            case 601:
-                cout << "xxxxxxxxxxx"<< endl;
-                break;
-            default:
-                break;
-        }
-    };
-
-    pMenu menu = crea<Menu>(xxx);
-    menu->aggiungiVoce(100, "ciao mondo");
-    menu->aggiungiVoce(101, "pippo");
-    menu->aggiungiVoce(0, "_____");
-
-    pMenu sm = Oggetto::crea<Menu>(menu,"maria");
-    sm->aggiungiVoce(200, "mariaaa");
-    sm->aggiungiVoce(201, "luigi");
-
-    menu->aggiungiVoce(600, ":'(");
-
-
-    pMenu sx = Oggetto::crea<Menu>(menu,"xxxxx");
-    sx->aggiungiVoce(601,"ciaoooo mondo X");
-
-
-    vista->aggiungi(menu);
-
-
-    app.aggiungiVista(vista);
-    app.aggiungiVista(vista2);
-    app.aggiungiVista(vista3);
+    app.aggiungiVista(vistaTest1);
 
 
     app.esegui();

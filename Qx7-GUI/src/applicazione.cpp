@@ -88,10 +88,6 @@ CodiceScena Applicazione::disegnaVista = []{
 };
 
 CodiceSistemaRiferimentoVisivo Applicazione::impostaCameraVista =[](int w, int h){
-    // aggiornamento dimensione finestra
-    //altezzaApplicazione = h;
-    ////lunghezzaApplicazione = w;
-
     Proiezione2D campo{
         CampoVisivo(0.0,(double)w,(double)h,0.0),
         Area( // finestra visiva
