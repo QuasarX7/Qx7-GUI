@@ -39,7 +39,7 @@
  * @file  campo.h
  * @author Dr. Domenico della Peruta
  * @date 25-05-2018
- * @version 1.0.1, 15-07-2018
+ * @version 1.0.2, 16-07-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Campo.
  * 
@@ -189,6 +189,7 @@ namespace GUI {
         virtual void focusAcquisito()override; ///< acquisizione focus
         virtual void focusCeduto()override;    ///< perdita focus
         
+        bool abilitaInvio = false;///< permette di acquisire l'input di invio ("\n") da tastiera
         
         pStringa    input;
         pRettangolo campo,bordoFocus;

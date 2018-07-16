@@ -73,6 +73,7 @@ int main(int argc, char* argv[]) {
     pCampo campo2  = Oggetto::crea<Campo>(vistaTest1,ID_4,OrigineArea{600,700},(size_t)15);
 
 
+    pAreaTesto area1 = Oggetto::crea<AreaTesto>(vistaTest1,ID_5,OrigineArea{-200,700},(size_t)30,(size_t)6);
     app.aggiungiVista(vistaTest1);
 
 

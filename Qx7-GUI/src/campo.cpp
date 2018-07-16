@@ -189,8 +189,8 @@ void Campo::inputTastiera(const Tastiera& tastiera){
                 break;
             case 9: // tasto 'tab'
                 break;
-            //case 13: // tasto invio
-                //break;
+            case 13: // tasto invio
+                if(!abilitaInvio)break;
                 
             default:{
                 size_t maxInput = mascheraInput.stringa().size() > 0 ? mascheraInput.stringa().size() : limite;

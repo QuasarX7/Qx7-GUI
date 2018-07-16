@@ -39,7 +39,7 @@
  * @file area_testo.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.0, 
+ * @version  1.0.1, 16/07/2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe AreaTesto.
  * 
@@ -60,7 +60,17 @@ namespace GUI {
     
     class AreaTesto: public Campo{
     public:
+    	/**
+    	 * Costruttore
+    	 * @param ID
+    	 * @param posizione
+    	 * @param numeroCaratteriRiga
+    	 * @param numeroRighe
+    	 */
         AreaTesto(size_t ID, const OrigineArea& posizione, size_t numeroCaratteriRiga,size_t numeroRighe);
+        /**
+         * Distruttore
+         */
         virtual ~AreaTesto(){}
         
         //string testo()const;

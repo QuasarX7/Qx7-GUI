@@ -39,7 +39,7 @@
  * @file area_testo.cpp
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.0, 
+ * @version 1.0.1, 16/07/2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe AreaTesto.
  * 
@@ -55,6 +55,7 @@ AreaTesto::AreaTesto(size_t ID, const OrigineArea& posizione, size_t numeroCarat
   limiteRighe{numeroRighe},
   lunghezzaRiga{numeroCaratteriRiga}
 {
+	abilitaInvio = true;
     
     limite = numeroCaratteriRiga * numeroRighe;
     area.dimensione(DimensioneArea{
