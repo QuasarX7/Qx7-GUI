@@ -54,12 +54,32 @@ using namespace GUI;
 Etichetta::Etichetta(size_t ID, const string& testo, const OrigineArea& posizione, const Colore& colore, TipoCarattere font)
 :  Componente{ID,Area{posizione, DimensioneArea{20,10*(int)testo.size()}}}
 {
+	coloreTesto = colore;
     stringa = Utili::crea<Stringa>(
         testo,
         Punto(area.origine().x(),area.origine().y()+area.dimensione().altezza()),
         colore
     );
     stringa->carattere(font);
+}
+
+void Etichetta::disegnaSfondo(const Colore& vista){
+	if(abilitaSfondo || abilitaBordo){
+    	pRettangolo sfondo = Utili::crea<Rettangolo>(
+				abilitaSfondo == false ? vista : coloreSfondo,
+				abilitaBordo  == false ? vista : coloreBordo,
+				area
+		);
+    	sfondo->bordo(2.0);
+    	sfondo->disegna();
+	}
+}
+
+void Etichetta::abilita(ColoreComponente colore,bool applica){
+	if(colore == ColoreComponente::BORDO)
+		this->abilitaBordo = applica;
+	else if(colore == ColoreComponente::SFONDO)
+		this->abilitaSfondo = applica;
 }
 
 void Etichetta::disegna(){
@@ -72,6 +92,7 @@ void Etichetta::disegna(){
     stringa->disegna();
     
     pVista vista = std::dynamic_pointer_cast<Vista>(genitore());
+
     if(vista != nullptr){
         
         pStringa riflesso = Utili::crea<Stringa>(*stringa.get());
@@ -84,9 +105,10 @@ void Etichetta::disegna(){
             Punto{stringa->localizzazione().x()+1,stringa->localizzazione().y()+1}
         );
         riflesso->disegna();
+        disegnaSfondo(c);
     }
     
-    
+
 }
 
 void Etichetta::riscrivi(const string& testo){

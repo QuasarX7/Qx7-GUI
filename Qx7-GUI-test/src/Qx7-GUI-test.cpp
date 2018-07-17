@@ -56,7 +56,13 @@ int main(int argc, char* argv[]) {
 			ARANCIONE,
 			TipoCarattere::TIMES_ROMAN_24
 	);
+    etichettaTitolo1->colora(ROSSO,ColoreComponente::BORDO);
+    etichettaTitolo1->abilita(ColoreComponente::BORDO, true);
+
+    etichettaTitolo1->colora(NERO,ColoreComponente::SFONDO);
+    etichettaTitolo1->abilita(ColoreComponente::SFONDO,true);
 /*
+ *
     pEtichetta etichettaDescrizione1  = Oggetto::crea<Etichetta>(
         	vistaTest1,
     		ID_2,

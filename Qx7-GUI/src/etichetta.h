@@ -53,29 +53,53 @@
 using namespace std;
 
 #include "componente.h"
+
 #include "stringa.h"
+#include "rettangolo.h"
 using namespace Grafica;
 
 
 namespace GUI {
     typedef shared_ptr<Stringa> pStringa;
     
+    typedef shared_ptr<Rettangolo> pRettangolo;
+
     class Etichetta;
     typedef shared_ptr<Etichetta> pEtichetta;
     
     class Etichetta: public Componente{
     public:
         Etichetta(size_t ID,const string& testo, const OrigineArea& posizione, const Colore& colore = NERO, TipoCarattere font = GENERICO_PICCOLO);
-        
+        /**
+         * Distruttore.
+         */
         virtual ~Etichetta(){}
-        
+        /**
+         * Abilita il la colorazione decorativa dell'etichetta.
+         * @param colore 	tipo elemento decorativo: ColoreComponente::BORDO o ColoreComponente::SFONDO
+         * @param applica	true (di default) abilita la decorazione; false la disabilita.
+         */
+        void abilita(ColoreComponente colore,bool applica=true);
+
         virtual void disegna();
         
+        /* SLOT */
+        virtual void passaggioMouse(const Cursore& mouse,Stato stato) override{/* nessun effetto */}
+
+
+
         void riscrivi(const string& testo);
         Testo testo()const{return stringa->testo();}
-        
+    private:
+        /**
+         * Se impostato un colore di fondo o uno di bordo, lo applica al disegno.
+         * @param vista
+         */
+        void disegnaSfondo(const Colore& vista);
     protected:
         pStringa stringa;
+        bool abilitaSfondo = false;
+        bool abilitaBordo = false;
     };
 }
 
