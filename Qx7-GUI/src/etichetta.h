@@ -81,7 +81,7 @@ namespace GUI {
          */
         void abilita(ColoreComponente colore,bool applica=true);
 
-        virtual void disegna();
+        virtual void disegna()override;
         
         /* SLOT */
         virtual void passaggioMouse(const Cursore& mouse,Stato stato) override{/* nessun effetto */}

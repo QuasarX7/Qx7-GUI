@@ -135,7 +135,7 @@ Testo Testo::frammento(size_t inizio, size_t lunghezza, Unità tipo)const{
         };
     }
     
-    if( ( ((long double)inizio) + ((long double)lunghezza) ) >=  SIZE_T_MAX)
+    if( ( ((long double)inizio) + ((long double)lunghezza) ) >=  std::numeric_limits<size_t>::max())
         throw out_of_range{
             debugFrammentoLength(inizio,lunghezza,"lunghezza frammento superiore a SIZE_T_MAX.")
         };

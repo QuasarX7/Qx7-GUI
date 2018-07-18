@@ -39,7 +39,7 @@
  * @file area_testo.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version  1.0.1, 16/07/2018
+ * @version  1.0.2, 17/07/2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe AreaTesto.
  * 

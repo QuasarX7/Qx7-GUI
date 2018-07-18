@@ -39,7 +39,7 @@
  * @file area_testo.cpp
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.1, 16/07/2018
+ * @version 1.0.2, 17/07/2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe AreaTesto.
  * 
@@ -106,7 +106,7 @@ void AreaTesto::disegnaCursore(){
         cursore->posiziona(
             Punto{
                 area.origine().x() + 7.0 + x * LUNGHEZZA_CARATTERE ,
-                area.origine().y() + 4.0 + y * input->altezza()
+                area.origine().y() + 4.0 + y * input->altezzaCarattere()
             }             
         );
     }else{

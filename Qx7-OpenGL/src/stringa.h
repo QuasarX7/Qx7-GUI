@@ -39,7 +39,7 @@
  * @file stringa.h
  * @author Dr. Domenico della Peruta
  * @date 14-03-2018
- * @version 1.0.3, 15-07-2018
+ * @version 1.0.4, 17-07-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Stringa.
  * 
@@ -59,7 +59,6 @@ using namespace Utili;
 using namespace std;
 
 namespace Grafica {
-    
     /**
      * Font e dimensioni standard libreria GLUT
      */
@@ -85,8 +84,8 @@ namespace Grafica {
          * @param colore
          * @param lunghezzaRiga permette di creare un blocco di testo
          */
-        Stringa(const string& testo,const Punto& origine, const Colore& colore,size_t lunghezzaRiga =-1)
-        : Figura{origine,colore,colore},_testo{testo}, limite{lunghezzaRiga},font{GENERICO_PICCOLO} {}
+        Stringa(const string& testo,const Punto& origine, const Colore& colore,size_t lunghezzaRiga =std::numeric_limits<size_t>::max())
+        : Figura{origine,colore,colore}, limite{lunghezzaRiga},font{GENERICO_PICCOLO},_testo{testo} {}
         /**
          * Costruttore di copia
          * @param copia
@@ -109,7 +108,23 @@ namespace Grafica {
          * Altezza dei caratteri della stringa
          * @return 
          */
+        size_t altezzaCarattere()const;
+        /**
+         * Altezza dei caratteri di una stringa
+         * @param fontOpenGL
+         * @return
+         */
+        static size_t altezzaCarattere(TipoCarattere fontOpenGL);
+        /**
+         * Altezza testo in pixel.
+         * @return
+         */
         size_t altezza()const;
+        /**
+         * Lunghezza della stringa in pixel.
+         * @return
+         */
+        size_t lunghezza()const;
         /**
          * Numero massimo di caratteri per riga, nel caso non ci fosse nessun limite
          * il valore sarà -1.
@@ -134,6 +149,12 @@ namespace Grafica {
         
         
     private:
+        /**
+         * Font di default GLUT
+         * @return
+         */
+        void* tipoDiFont()const;
+
         size_t limite;
         Testo _testo;
         TipoCarattere font;

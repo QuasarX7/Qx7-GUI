@@ -39,7 +39,7 @@
  * @file stringa.cpp
  * @author Dr. Domenico della Peruta
  * @date 14-03-2018
- * @version 1.0.3, 15-07-2018
+ * @version 1.0.4, 17-07-2018
  * 
  * @brief File contenente l'implementazione della classe Stringa.
  * 
@@ -53,16 +53,7 @@ using namespace Grafica;
 using namespace std;
 
 void Stringa::disegna()const{
-    auto formatoCarattere = GLUT_BITMAP_HELVETICA_12;
-    switch (font) {
-        case GENERICO_GRANDE:   formatoCarattere = GLUT_BITMAP_9_BY_15; break;
-        case GENERICO_PICCOLO:  formatoCarattere = GLUT_BITMAP_8_BY_13; break;
-        case TIMES_ROMAN_10:    formatoCarattere = GLUT_BITMAP_TIMES_ROMAN_10; break;
-        case TIMES_ROMAN_24:    formatoCarattere = GLUT_BITMAP_TIMES_ROMAN_24; break;
-        case HELVETICA_10:      formatoCarattere = GLUT_BITMAP_HELVETICA_10; break;
-        case HELVETICA_12:      formatoCarattere = GLUT_BITMAP_HELVETICA_12; break;
-        case HELVETICA_18:      formatoCarattere = GLUT_BITMAP_HELVETICA_18; break;
-    };
+    void* formatoCarattere = tipoDiFont();
     glPushMatrix();
     trasforma(Vettore{posizione.x(),posizione.y()});
    
@@ -70,25 +61,61 @@ void Stringa::disegna()const{
 
     size_t i=0;
     for(Testo riga : _testo.incolonna(limite).righe()){
-        glRasterPos2f(posizione.x(),  posizione.y()+(i++)*altezza());
+        glRasterPos2f(posizione.x(),  posizione.y()+(i++)*altezzaCarattere());
         for(char carattere : riga.latino1())
             glutBitmapCharacter(formatoCarattere,static_cast<u_char>(carattere));
     }
     glPopMatrix();
 }
 
+void* Stringa::tipoDiFont()const{
+	void* formatoCarattere = GLUT_BITMAP_HELVETICA_12;
+	switch (font) {
+		case GENERICO_GRANDE:   formatoCarattere = GLUT_BITMAP_9_BY_15; break;
+		case GENERICO_PICCOLO:  formatoCarattere = GLUT_BITMAP_8_BY_13; break;
+		case TIMES_ROMAN_10:    formatoCarattere = GLUT_BITMAP_TIMES_ROMAN_10; break;
+		case TIMES_ROMAN_24:    formatoCarattere = GLUT_BITMAP_TIMES_ROMAN_24; break;
+		case HELVETICA_10:      formatoCarattere = GLUT_BITMAP_HELVETICA_10; break;
+		case HELVETICA_12:      formatoCarattere = GLUT_BITMAP_HELVETICA_12; break;
+		case HELVETICA_18:      formatoCarattere = GLUT_BITMAP_HELVETICA_18; break;
+	};
+	return formatoCarattere;
+}
+
+size_t Stringa::lunghezza()const{
+	size_t rigaMax = 0;
+	for(Testo riga : _testo.incolonna(limite).righe()){
+		string _riga = "";
+		for(char c : riga.latino1()){
+			if(c == '\n' || c == '\r')
+				break;
+			_riga += c;
+		}
+		size_t lungRiga = (size_t)glutBitmapLength(tipoDiFont(),(const unsigned char*)_riga.c_str());
+		if(rigaMax < lungRiga)
+			rigaMax = lungRiga;
+	}
+	return rigaMax;
+}
 
 size_t Stringa::altezza()const{
-    switch (font) {
-        case GENERICO_GRANDE:   return 16;
-        case GENERICO_PICCOLO:  return 14;
-        case TIMES_ROMAN_10:    return 11;
-        case TIMES_ROMAN_24:    return 25;
-        case HELVETICA_10:      return 12;
-        case HELVETICA_12:      return 14;
-        case HELVETICA_18:      return 20;
-    };
-    return std::numeric_limits<size_t>::min();
+	return altezzaCarattere() * _testo.incolonna(limite).righe().size();
+}
+
+size_t Stringa::altezzaCarattere(TipoCarattere fontOpenGL){
+	switch (fontOpenGL) {
+		case GENERICO_GRANDE:   return 16;
+		case GENERICO_PICCOLO:  return 14;
+		case TIMES_ROMAN_10:    return 11;
+		case TIMES_ROMAN_24:    return 25;
+		case HELVETICA_10:      return 12;
+		case HELVETICA_12:      return 14;
+		case HELVETICA_18:      return 20;
+	};
+	return std::numeric_limits<size_t>::min();
+}
+size_t Stringa::altezzaCarattere()const{
+	return Stringa::altezzaCarattere(font);
 }
 
 

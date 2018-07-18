@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
     pEtichetta etichettaTitolo1  = Oggetto::crea<Etichetta>(
     		vistaTest1,
 			ID_1,
-			"Test Vista",
+			"Questa è una bellissima vista",
 			OrigineArea{200,0},
 			ARANCIONE,
 			TipoCarattere::TIMES_ROMAN_24
@@ -61,8 +61,8 @@ int main(int argc, char* argv[]) {
 
     etichettaTitolo1->colora(NERO,ColoreComponente::SFONDO);
     etichettaTitolo1->abilita(ColoreComponente::SFONDO,true);
-/*
- *
+
+
     pEtichetta etichettaDescrizione1  = Oggetto::crea<Etichetta>(
         	vistaTest1,
     		ID_2,
@@ -74,7 +74,10 @@ int main(int argc, char* argv[]) {
     		ROSSO,
     		TipoCarattere::GENERICO_GRANDE
     );
-*/
+
+    etichettaDescrizione1->colora(BLU,ColoreComponente::SFONDO);
+    etichettaDescrizione1->abilita(ColoreComponente::SFONDO,true);
+
     pCampo campo1  = Oggetto::crea<Campo>(vistaTest1,ID_3,OrigineArea{-100,-140},(size_t)15,Maschera{"**/**/****",'*'});
     pCampo campo2  = Oggetto::crea<Campo>(vistaTest1,ID_4,OrigineArea{600,700},(size_t)15);
 
