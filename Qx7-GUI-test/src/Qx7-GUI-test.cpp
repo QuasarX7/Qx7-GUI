@@ -27,9 +27,11 @@ using namespace Grafica;
 const size_t ID_1 = 1000;
 const size_t ID_2 = 1001;
 const size_t ID_3 = 1002;
-const size_t ID_5 = 1005;
-const size_t ID_4 = 1008;
-const size_t ID_6 = 1009;
+const size_t ID_5 = 1003;
+const size_t ID_4 = 1004;
+const size_t ID_6 = 1005;
+const size_t ID_7 = 1006;
+const size_t ID_8 = 1007;
 const size_t ID_9 = 1019;
 const size_t ID_10 = 3000;
 const size_t ID_11 = 3001;
@@ -40,6 +42,7 @@ const size_t ID_12 = 3011;
 int main(int argc, char* argv[]) {
 
     Applicazione app(argc,argv);
+
     pVista vistaTest1 = Utili::crea<Vista>(
         "Test 1",
         Area{
@@ -72,7 +75,9 @@ int main(int argc, char* argv[]) {
     		"finestra.",
     		OrigineArea{200,80},
     		ROSSO,
-    		TipoCarattere::GENERICO_GRANDE
+    		TipoCarattere::GENERICO_GRANDE,
+			(size_t)15
+
     );
 
     etichettaDescrizione1->colora(BLU,ColoreComponente::SFONDO);
@@ -85,6 +90,59 @@ int main(int argc, char* argv[]) {
     pAreaTesto area1 = Oggetto::crea<AreaTesto>(vistaTest1,ID_5,OrigineArea{-200,700},(size_t)30,(size_t)6);
     app.aggiungiVista(vistaTest1);
 
+    pVista vistaTest2 = Utili::crea<Vista>(
+		"Test 2",
+		Area{
+			OrigineArea{150,50},
+			DimensioneArea{500,800}
+		},
+		NERO,
+		BIANCO
+	);
+    pEtichetta etichettaTitolo2  = Oggetto::crea<Etichetta>(
+			vistaTest2,
+			ID_6,
+			"SOMMA 2 NUMERI",
+			OrigineArea{200,0},
+			BIANCO,
+			TipoCarattere::TIMES_ROMAN_24
+	);
+
+
+    pEtichetta etichettaCampoNumero1 = Oggetto::crea<Etichetta>(
+			vistaTest2,
+			ID_7,
+			"A = ",
+			OrigineArea{50,150},
+			BLU,
+			TipoCarattere::TIMES_ROMAN_24
+	);
+
+    pCampo campoNumero1  = Oggetto::crea<Campo>(
+    		vistaTest2,
+			ID_8,
+			OrigineArea{200,150},
+			(size_t)15
+	);
+
+    pEtichetta etichettaCampoNumero2 = Oggetto::crea<Etichetta>(
+			vistaTest2,
+			ID_9,
+			"B = ",
+			OrigineArea{50,200},
+			BLU,
+			TipoCarattere::TIMES_ROMAN_24
+	);
+
+	pCampo campoNumero2  = Oggetto::crea<Campo>(
+			vistaTest2,
+			ID_10,
+			OrigineArea{200,200},
+			(size_t)15
+	);
+
+
+    app.aggiungiVista(vistaTest2);
 
     app.esegui();
 

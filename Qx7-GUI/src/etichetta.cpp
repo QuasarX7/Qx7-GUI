@@ -51,14 +51,16 @@
 using namespace GUI;
 
 
-Etichetta::Etichetta(size_t ID, const string& testo, const OrigineArea& posizione, const Colore& colore, TipoCarattere font)
+Etichetta::Etichetta(size_t ID, const string& testo, const OrigineArea& posizione,
+		const Colore& colore, TipoCarattere font,size_t lunghezzaRiga)
 :  Componente{ID, Area{posizione, DimensioneArea{0,0} } }
 {
 	coloreTesto = colore;
     stringa = Utili::crea<Stringa>(
         testo,
         Punto(area.origine().x(),area.origine().y()+Stringa::altezzaCarattere(font)*0.75),
-        colore
+        colore,
+		lunghezzaRiga
     );
     stringa->carattere(font);
 }

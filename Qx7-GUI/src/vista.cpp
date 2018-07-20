@@ -273,7 +273,7 @@ void Vista::disegna(){
                  area.dimensione().altezza()  -2 * spessore,
                  area.dimensione().lunghezza()-2 * spessore
     );
-    infoDebug();
+//  infoDebug();
     sfondo->disegna();
     glFlush();
 }

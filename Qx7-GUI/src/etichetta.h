@@ -15,7 +15,7 @@
  * GNU Lesser General Public License per maggiori dettagli.                 *
  *                                                                          *
  * Dovresti aver ricevuto una copia di GNU Lesser General Public            *
- * Licenza insieme a Qx7-GUI. Altrimenti, vedi al sito                   *
+ * Licenza insieme a Qx7-GUI. Altrimenti, vedi al sito                      *
  * <http://www.gnu.org/licenses/>.                                          *
  *                                                                          *
  * (ENGLISH)                                                                *
@@ -32,7 +32,7 @@
  *   GNU Lesser General Public License for more details.                    *
  *                                                                          *
  *   You should have received a copy of the GNU Lesser General Public       *
- *   License along with Qx7-GUI.  If not, see                            *
+ *   License along with Qx7-GUI.  If not, see                               *
  *   <http://www.gnu.org/licenses/>.                                        *
  ****************************************************************************/
 /**
@@ -69,26 +69,43 @@ namespace GUI {
     
     class Etichetta: public Componente{
     public:
-        Etichetta(size_t ID,const string& testo, const OrigineArea& posizione, const Colore& colore = NERO, TipoCarattere font = GENERICO_PICCOLO);
+    	/**
+    	 * Costruttore.
+    	 * @param ID				numero di identificazione del componente
+    	 * @param testo				testo espesso con codifica latina 1 (europa occidentale)
+    	 * @param posizione    		coordinate locali riferite al vertice alto-sinistra
+    	 * @param colore			colore testo, di default NERO
+    	 * @param font				font standard GLUT, definiti nel tipo enumerativo 'TipoCarattere'
+    	 * @param lunghezzaRiga		di default è pari al valore massimo del tipo size_t
+    	 */
+        Etichetta(size_t ID,const string& testo, const OrigineArea& posizione, const Colore& colore = NERO,
+        		TipoCarattere font = GENERICO_PICCOLO, size_t lunghezzaRiga = std::numeric_limits<size_t>::max() );
         /**
          * Distruttore.
          */
         virtual ~Etichetta(){}
         /**
-         * Abilita il la colorazione decorativa dell'etichetta.
+         * Abilita la colorazione decorativa dell'etichetta.
          * @param colore 	tipo elemento decorativo: ColoreComponente::BORDO o ColoreComponente::SFONDO
          * @param applica	true (di default) abilita la decorazione; false la disabilita.
          */
         void abilita(ColoreComponente colore,bool applica=true);
-
+        /**
+         * Disegna l'etichetta.
+         */
         virtual void disegna()override;
         
         /* SLOT */
         virtual void passaggioMouse(const Cursore& mouse,Stato stato) override{/* nessun effetto */}
-
-
-
+        /**
+         * Rinizializza testo.
+         * @param testo
+         */
         void riscrivi(const string& testo);
+        /**
+         * Testo dell'etichetta.
+         * @return
+         */
         Testo testo()const{return stringa->testo();}
     private:
         /**
@@ -97,9 +114,9 @@ namespace GUI {
          */
         void disegnaSfondo(const Colore& vista);
     protected:
-        pStringa stringa;
-        bool abilitaSfondo = false;
-        bool abilitaBordo = false;
+        pStringa stringa;            ///< testo dell'etichetta
+        bool abilitaSfondo = false;  ///< abilita la visualizzazione dello sfondo rettangolare
+        bool abilitaBordo  = false;  ///< abilita la visualizzazione del margine  rettangolare
     };
 }
 
