@@ -66,11 +66,15 @@ namespace GUI {
 
     class Etichetta;
     typedef shared_ptr<Etichetta> pEtichetta;
-    
+    /**
+     * La classe Etichetta rappresenta un semplice componente visivo di output.
+     */
     class Etichetta: public Componente{
     public:
     	/**
-    	 * Costruttore.
+    	 * Costruttore, ci permetti di definire il testo e la posizione di un componente, eventualmente anche il
+    	 * colore del testo, il tipo di font e la lunghezza limite di caratteri per riga.
+    	 *
     	 * @param ID				numero di identificazione del componente
     	 * @param testo				testo espesso con codifica latina 1 (europa occidentale)
     	 * @param posizione    		coordinate locali riferite al vertice alto-sinistra
@@ -86,6 +90,7 @@ namespace GUI {
         virtual ~Etichetta(){}
         /**
          * Abilita la colorazione decorativa dell'etichetta.
+         *
          * @param colore 	tipo elemento decorativo: ColoreComponente::BORDO o ColoreComponente::SFONDO
          * @param applica	true (di default) abilita la decorazione; false la disabilita.
          */
