@@ -72,7 +72,10 @@ namespace Grafica {
     
     /**
      * La classe Azione che implementa un evento generico che ha un inizio e una fine
-     * temporale.
+     * temporale. Questa classe astatta implementa delle azioni che devono essere aggiunte
+     * al metodo 'anima' della classe generica Figura.
+     *
+     * @see <code>void Figura::anima(const vector<pAzione>& azioni)</code>
      */
     class Azione {
     public:
@@ -128,6 +131,7 @@ namespace Grafica {
         Asse asseDiRotazione;
     };
     
+
     /**
      * La classe Dimensiona ingrandisce o riduce le dimensioni.
      */

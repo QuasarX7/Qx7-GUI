@@ -39,7 +39,7 @@
  * @file prospettiva.h
  * @author Dr. Domenico della Peruta
  * @date 26-02-2018
- * @version 1.0.1, 29-04-2018
+ * @version 1.0.2, 21-07-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Proiezione 
  * e delle sue derivate.
@@ -66,9 +66,20 @@ namespace Grafica {
      */
     class Proiezione{
     public:
+    	/**
+    	 * Costruttore
+    	 * @param volumeVisivo
+    	 * @param finestraVisiva
+    	 */
         Proiezione(const CampoVisivo& volumeVisivo, const Area& finestraVisiva);
+        /**
+         * Implementa la prospettiva.
+         */
         virtual void applica()=0;
-        
+        /**
+         * Distruttore
+         */
+        virtual ~Proiezione(){}
     protected:
         void inizializza();
         void finestra();
@@ -98,8 +109,19 @@ namespace Grafica {
      */
     class ProiezioneOrtogonale: public Proiezione{
     public:
+    	/**
+    	 * Costruttore
+    	 * @param volumeVisivo
+    	 * @param finestraVisiva
+    	 */
         ProiezioneOrtogonale(const CampoVisivo& volumeVisivo, const Area& finestraVisiva);
-        
+        /**
+         * Distruttore
+         */
+        virtual ~ProiezioneOrtogonale(){}
+        /**
+         * Applica la proiezione ortogonale
+         */
         void applica();
     };
     
@@ -125,8 +147,19 @@ namespace Grafica {
      */
     class ProiezioneProspettica: public Proiezione{
     public:
+    	/**
+    	 * Costruttore
+    	 * @param volumeVisivo
+    	 * @param finestraVisiva
+    	 */
         ProiezioneProspettica(const CampoVisivo& volumeVisivo, const Area& finestraVisiva);
-        
+        /**
+         * Distruttore
+         */
+        virtual ~ProiezioneProspettica(){}
+        /**
+         * Applica la visualizzazione proprettica
+         */
         void applica();
     };
     

@@ -134,7 +134,7 @@ int main(int argc, char* argv[]) {
 			TipoCarattere::TIMES_ROMAN_24
 	);
 
-	pCampo campoNumero2  = Oggetto::crea<Campo>(
+	pCampo campoNumero2 = Oggetto::crea<Campo>(
 			vistaTest2,
 			ID_10,
 			OrigineArea{200,200},

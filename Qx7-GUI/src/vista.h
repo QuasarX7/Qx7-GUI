@@ -51,9 +51,11 @@
 
 #include <iostream>
 #include <memory>
+#include <chrono>
 using namespace std;
 
 #include "rettangolo.h"
+#include "galassia.h"
 using namespace Grafica;
 
 #include "etichetta.h"
@@ -74,8 +76,13 @@ namespace GUI {
      * @var shared_ptr<Rettangolo> pRettangolo
      * @brief puntatore "intelligente" ad un oggetto di tipo Rettangolo
      */
+    /**
+	 * @var shared_ptr<Cubo> pCubo
+	 * @brief puntatore "intelligente" ad un oggetto di tipo Sfera
+	 */
     typedef shared_ptr<Vista> pVista;
     typedef shared_ptr<Rettangolo> pRettangolo;
+    typedef shared_ptr<Figura> pLogo;
     /**
      * La classe Vista rappresenta la parte interna alla finestra, essa contiene
      * tutti i componenti di input/output della nostra GUI.
@@ -176,6 +183,7 @@ namespace GUI {
          */
         string debug()const override;
 
+        void avviaLogo();
         
     protected:
         const double spessore = 8.0;///< spessore della sfumatura di colore dello sfondo
@@ -282,6 +290,7 @@ namespace GUI {
         
         pRettangolo barraScorrimentoVerticale,barraScorrimentoOrizzontale;
         pRettangolo cursoreScorrimentoVerticale,cursoreScorrimentoOrizzontale;
+
         int xClic = 0, yClic = 0;
         bool scorrimentoVerticale = false;
         bool scorrimentoOrizzontale = false;
@@ -291,6 +300,8 @@ namespace GUI {
         
         
         string titolo;
+
+        pLogo logo;
     };
 }
 

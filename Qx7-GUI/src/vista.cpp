@@ -109,8 +109,18 @@ Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore
             spessoreBarra-2.0,
             0.0
     );
-    
-    
+    logo = Utili::crea<Galassia>(
+    		sfumatura,
+			Punto{sfondo->lunghezza()-120,-220.0,350},
+			120.0,
+			(size_t)8000,
+			(size_t)5
+	);
+
+    //logo->ruota(45,Asse::X);
+    //logo->ruota(45,Asse::Z);
+    //logo->ruota(-45,Asse::Y);
+
     /* SEGNALI */
     click.connetti(this, &Vista::azione);
     coordinateMouse.connetti(this, &Vista::passaggioMouse);
@@ -274,7 +284,13 @@ void Vista::disegna(){
                  area.dimensione().lunghezza()-2 * spessore
     );
 //  infoDebug();
+    logo->posiziona(Punto{(double)area.dimensione().lunghezza()-120.0,-220.0,350.0});
+    glPushMatrix();
+    glRotated(-45,1.0,0.0,0.0);
+    logo->disegna();
+    glPopMatrix();
     sfondo->disegna();
+
     glFlush();
 }
 
@@ -530,3 +546,16 @@ void Vista::infoDebug(){
     pStringa s = Utili::crea<Stringa>(debug(),Punto{10.0,10.0},BIANCO);
     s->disegna();
 }
+
+
+void Vista::avviaLogo(){
+	const auto TEMPO_MAX = std::chrono::duration<long long, milli>::max();
+
+	logo->anima(
+			vector<pAzione>{
+				Utili::crea<RotazioneCostante>(0ms,TEMPO_MAX , Asse::Z, 2.0)
+			}
+	);
+
+}
+

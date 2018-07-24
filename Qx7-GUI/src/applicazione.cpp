@@ -88,8 +88,9 @@ CodiceScena Applicazione::disegnaVista = []{
 };
 
 CodiceSistemaRiferimentoVisivo Applicazione::impostaCameraVista =[](int w, int h){
-    Proiezione2D campo{
-        CampoVisivo(0.0,(double)w,(double)h,0.0),
+	ProiezioneOrtogonale campo{
+
+        CampoVisivo(0.0,(double)w,(double)h,0.0,-500,500),
         Area( // finestra visiva
                 OrigineArea(0,0),
                 DimensioneArea(h,w)
@@ -153,6 +154,15 @@ CodiceMenu Applicazione::menu = []{
 		vista->disegnaMenu();
 }; 
 
+CodiceAzioni Applicazione::azioni = []{
+	auto vista = vistaCorrente();
+	if(vista != nullptr){
+		vista->avviaLogo();
+	}
+	this_thread::sleep_for(INTERVALLO_DI_AGGIORNAMENTO_GRAFICO);
+	glutPostRedisplay();
+};
+
 void Applicazione::aggiungiVista(pVista vista){
     // L' id della "vista" viene generato come l' id delle finestre GLUT
     // cioè come un numero intero che parte da 1.
@@ -188,6 +198,7 @@ void Applicazione::esegui(){
         finestra->inputTastiera(tastiera);
         finestra->inputTastieraTastiSpeciali(tastieraTastiSpeciali);
         finestra->aggiungiMenu(menu);
+        finestra->background(azioni);
         
         finestre.push_back(finestra);
         gl.aggiungiFinestra(finestra);

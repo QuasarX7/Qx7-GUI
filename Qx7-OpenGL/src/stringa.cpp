@@ -61,7 +61,7 @@ void Stringa::disegna()const{
 
     size_t i=0;
     for(Testo riga : _testo.incolonna(limite).righe()){
-        glRasterPos2f(posizione.x(),  posizione.y()+(i++)*altezzaCarattere());
+        glRasterPos2f(0.0f,  (i++)*altezzaCarattere());
         for(char carattere : riga.latino1())
             glutBitmapCharacter(formatoCarattere,static_cast<u_char>(carattere));
     }

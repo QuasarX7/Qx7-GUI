@@ -49,12 +49,12 @@ Linea::Linea(const Punto& p1,const Punto& p2,const Colore& colore,double spessor
 
 void Linea::disegna() const{
     glPushMatrix();
-    trasforma(Vettore{(posizione.x()+estremo.x())/2.0,(posizione.y()+estremo.y())/2.0});
+    trasforma(Vettore{posizione.x(),posizione.y()});
     glLineWidth(spessoreBordo);
     glBegin(GL_LINE_LOOP);
     coloreBordo.disegna();
-    glVertex2f(posizione.x(),posizione.y());
-    glVertex2f(estremo.x(),estremo.y());
+    glVertex2f(0.0,0.0);
+    glVertex2f(dx,dy);
     glEnd();
     glPopMatrix();
 }

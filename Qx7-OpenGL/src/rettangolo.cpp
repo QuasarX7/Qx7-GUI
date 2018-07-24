@@ -55,7 +55,7 @@ void Rettangolo::disegna()const{
         
     }
     glPushMatrix();
-    trasforma(Vettore{posizione.x()+_lunghezza/2.0,posizione.y()+_altezza/2.0});
+    trasforma(Vettore{posizione.x(),posizione.y()});
     
     //   [1]   bordo con effetto sfumatura 
     
@@ -66,34 +66,34 @@ void Rettangolo::disegna()const{
         
     glBegin(GL_POLYGON); // sx
         cEsterno.disegna();
-        glVertex2f(posizione.x()-dx,posizione.y()-dx);
-        glVertex2f(posizione.x()-dx,posizione.y()+_altezza+dx);
+        glVertex2f(-dx,-dx);
+        glVertex2f(-dx,+_altezza+dx);
         cInterno.disegna();
-        glVertex2f(posizione.x(),posizione.y()+_altezza);
-        glVertex2f(posizione.x(),posizione.y());
+        glVertex2f(0.0,_altezza);
+        glVertex2f(0.0,0.0);
     glEnd();
     glBegin(GL_POLYGON); // sopra
         cEsterno.disegna();
-        glVertex2f(posizione.x()-dx,posizione.y()-dx);
-        glVertex2f(posizione.x()+_lunghezza +dx,posizione.y()-dx);
+        glVertex2f(-dx,-dx);
+        glVertex2f(_lunghezza +dx,-dx);
         cInterno.disegna();
-        glVertex2f(posizione.x()+_lunghezza,posizione.y());
-        glVertex2f(posizione.x(),posizione.y());
+        glVertex2f(_lunghezza,0.0);
+        glVertex2f(0.0,0.0);
     glEnd();
     glBegin(GL_POLYGON); // dx
-        glVertex2f(posizione.x()+_lunghezza,posizione.y());
-        glVertex2f(posizione.x()+_lunghezza,posizione.y()+_altezza);
+        glVertex2f(_lunghezza,0.0);
+        glVertex2f(_lunghezza,_altezza);
         cEsterno.disegna();
-        glVertex2f(posizione.x()+_lunghezza+dx,posizione.y()+_altezza+dx);
-        glVertex2f(posizione.x()+_lunghezza +dx,posizione.y()-dx);
+        glVertex2f(_lunghezza+dx,_altezza+dx);
+        glVertex2f(_lunghezza +dx,-dx);
     glEnd();
     glBegin(GL_POLYGON); // sotto
         
-        glVertex2f(posizione.x()+_lunghezza+dx,posizione.y()+_altezza+dx);
-        glVertex2f(posizione.x()-dx,posizione.y()+_altezza+dx);
+        glVertex2f(_lunghezza+dx,_altezza+dx);
+        glVertex2f(-dx,_altezza+dx);
         cInterno.disegna();
-        glVertex2f(posizione.x(),posizione.y()+_altezza);
-        glVertex2f(posizione.x()+_lunghezza,posizione.y()+_altezza);
+        glVertex2f(0.0,_altezza);
+        glVertex2f(_lunghezza,_altezza);
        
     glEnd();
     // [1]
@@ -104,18 +104,18 @@ void Rettangolo::disegna()const{
         
     // [2]  colore sfondo
     
-        glVertex2f(posizione.x(),posizione.y());
-        glVertex2f(posizione.x()+_lunghezza,posizione.y());
-        glVertex2f(posizione.x()+_lunghezza,posizione.y()+_altezza);
-        glVertex2f(posizione.x(),posizione.y()+_altezza);
+        glVertex2f(0.0,0.0);
+        glVertex2f(_lunghezza,0.0);
+        glVertex2f(_lunghezza,_altezza);
+        glVertex2f(0.0,_altezza);
     // [2]
     }else{
     
     // [3] copertura immagine
-        glTexCoord2f(0.0, 1.0); glVertex2f(posizione.x(),posizione.y());
-        glTexCoord2f(1.0, 1.0); glVertex2f(posizione.x()+_lunghezza,posizione.y());
-        glTexCoord2f(1.0, 0.0); glVertex2f(posizione.x()+_lunghezza,posizione.y()+_altezza);
-        glTexCoord2f(0.0, 0.0); glVertex2f(posizione.x(),posizione.y()+_altezza);
+        glTexCoord2f(0.0, 1.0); glVertex2f(0.0,0.0);
+        glTexCoord2f(1.0, 1.0); glVertex2f(_lunghezza,0.0);
+        glTexCoord2f(1.0, 0.0); glVertex2f(_lunghezza,_altezza);
+        glTexCoord2f(0.0, 0.0); glVertex2f(0.0,_altezza);
     // [3]
     }
     glEnd();

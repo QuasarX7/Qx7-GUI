@@ -73,7 +73,7 @@ void Curva::disegna() const{
             f.assegna("x", x - origineAssi.x());
             auto y = f.esegui()  + origineAssi.y();
             if( y > 0.0 && y <= (double)dominio.altezza()/(double)unita ){
-                glVertex2f(x*unita + posizione.x(),(double)dominio.lunghezza() - y*unita + posizione.y());
+                glVertex2f(x*unita, (double)dominio.lunghezza() - y*unita);
             }
          }
     }catch(std::invalid_argument e){

@@ -65,30 +65,23 @@ void Figura::ruota(double angolo,Asse asse){
 
 void Figura::trasforma(const Vettore& baricentro)const{
     
-    //trasla
-    glTranslated(trasla.x(),trasla.y(),trasla.z());
+	//trasla
+    glTranslated(baricentro.x()+trasla.x(),baricentro.y()+trasla.y(),baricentro.z()+trasla.z());
     
     // ruota lungo asse Z
     if(angoloRotazioneZ != 0.0){
-        glTranslated(baricentro.x(),baricentro.y(),0.0);
         glRotated(-angoloRotazioneZ,0.0,0.0,1.0);
-        glTranslated(-baricentro.x(),-baricentro.y(),0.0);
     }
     // ruota lungo asse Y
     if(angoloRotazioneY != 0.0){
-        glTranslated(baricentro.x(),0.0,baricentro.z());
         glRotated(-angoloRotazioneY,0.0,1.0,0.0);
-        glTranslated(-baricentro.x(),0.0,-baricentro.z());
     }
     // ruota lungo asse X
     if(angoloRotazioneX != 0.0){
-        glTranslated(0.0,baricentro.y(),baricentro.z());
         glRotated(-angoloRotazioneX,1.0,0.0,0.0);
-        glTranslated(0.0,-baricentro.y(),-baricentro.z());
     }
     //scala
     if(scala != 1.0){
-        glTranslated(baricentro.x(),baricentro.y(),baricentro.z());
         glScaled(scala, scala, scala);
         glTranslated(-baricentro.x(),-baricentro.y(),-baricentro.z());
     }

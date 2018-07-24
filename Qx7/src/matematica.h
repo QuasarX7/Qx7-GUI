@@ -40,7 +40,7 @@
  * @file matematica.h
  * @author Dr. Domenico della Peruta
  * @date 04-01-2018
- * @version 1.0.1, 27-04-2018
+ * @version 1.0.2, 23-07-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione di alcune classi utili
  * nel campo della matematica e giometria.
@@ -71,6 +71,12 @@ namespace Utili {
     
     const static auto NUMERO_REALE_INDEFINITO = std::numeric_limits<double>::quiet_NaN();
     
+    /**
+     * Metodo che restituisce un numero casuale tra 0 e 1.
+     * @return
+     */
+    template<typename numero>
+    numero casuale(){ return (numero)std::rand()/(numero)RAND_MAX; }
     
     /**
      * La classe modello Posizione rappersenta un vettore numerico 2D o 3D.

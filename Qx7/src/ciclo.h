@@ -61,7 +61,7 @@ namespace Utili {
     typedef std::chrono::seconds Vita;
     typedef std::function<void(void)> Funzione;
     
-    
+
     
     /**
      * Costante di riferimento STANDARD, per l'aggiornamento delle finestre e delle 

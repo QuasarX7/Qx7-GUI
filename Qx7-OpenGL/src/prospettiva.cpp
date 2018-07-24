@@ -39,7 +39,7 @@
  * @file prospettiva.cpp
  * @author Dr. Domenico della Peruta
  * @date 26-02-2018
- * @version 1.0.1, 29-04-2018
+ * @version 1.0.2, 21-07-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Proiezione 
  * e delle sue derivate.

@@ -54,79 +54,13 @@ Cubo::Cubo(const Colore& sfondo, const Colore& bordo, const Punto& baricentro, d
 
 void Cubo::disegna() const{
     glPushMatrix();
-    trasforma(Vettore{posizione.x()+lato/2.0,posizione.y()+lato/2.0});
+    trasforma(Vettore{posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0});
     glLineWidth(spessoreBordo);
     
     coloreBordo.disegna();
-    // faccia avanti
-    glBegin(GL_LINE_LOOP);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-    glEnd();
-    // faccia dietro
-    glBegin(GL_LINE_LOOP);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-    glEnd();
-    // bordi laterali
-    glBegin(GL_LINES);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-    glEnd();
-    
+    glutWireCube(lato);
     coloreSfondo.disegna();
-    
-    glBegin(GL_QUADS);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-    glEnd();
-    
-    glBegin(GL_QUADS);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-    glEnd();
- 
-    glBegin(GL_QUADS);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-    glEnd();
-    
-    glBegin(GL_QUADS);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-    glEnd();
-   
-    glBegin(GL_QUADS);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()-lato/2.0,posizione.z()+lato/2.0);
-    glEnd();
-    
-    glBegin(GL_QUADS);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()-lato/2.0);
-        glVertex3f(posizione.x()+lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-        glVertex3f(posizione.x()-lato/2.0,posizione.y()+lato/2.0,posizione.z()+lato/2.0);
-    glEnd();
+    glutSolidCube(lato);
     
     glPopMatrix();
 }
