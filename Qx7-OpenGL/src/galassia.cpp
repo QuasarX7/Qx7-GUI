@@ -36,17 +36,21 @@ Galassia::Galassia(const Colore& sfondo,const Punto& baricentro, double raggio, 
 		x += randomOffsetX;
 		y += randomOffsetY;
 
-		stelle.push_back(Punto{x, y});
+		pPunto p = std::make_shared<Punto>((double)x,(double)y,0.0);
+		pColore c = std::make_shared<Colore>(1.0f-pow((float)(distanza/R),2.0f),0.0f,pow((float)(distanza/R),2.0f));
+		Stella stella = {p, c};
+		stelle.push_back(stella);
+
 	}
 }
 void Galassia::disegna()const{
     glPushMatrix();
     trasforma(Vettore{posizione.x(),posizione.y(),posizione.z()});
-
     glBegin(GL_POINTS);
-    coloreSfondo.disegna();
-    for(Punto stella: stelle){
-    	glVertex3d(stella.x(),stella.y(),0.0);
+
+    for(Stella stella: stelle){
+    	stella.colore->disegna();
+    	glVertex3d(stella.posizione->x(),stella.posizione->y(),0.0);
     }
     glEnd();
 

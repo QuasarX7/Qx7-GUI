@@ -2,6 +2,7 @@
 #define GALASSIA_H_
 
 #include <vector>
+#include <memory>
 #include <random>
 using namespace std;
 
@@ -12,6 +13,11 @@ using namespace Utili;
 
 namespace Grafica {
 
+typedef shared_ptr<Punto> pPunto;
+typedef shared_ptr<Colore> pColore;
+typedef struct Stella{pPunto posizione; pColore colore;};
+
+
 class Galassia : public Figura{
 public:
 	Galassia(const Colore& sfondo,const Punto& baricentro, double raggio, size_t numeroStelle=1000, size_t braccia=5);
@@ -20,7 +26,7 @@ public:
 
 private:
 		double R;
-		vector<Punto> stelle;
+		vector<Stella> stelle;
 
 };
 

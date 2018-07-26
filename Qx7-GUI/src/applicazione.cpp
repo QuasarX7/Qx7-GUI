@@ -39,7 +39,7 @@
  * @file applicazione.cpp
  * @author Dr. Domenico della Peruta
  * @date 04-05-2018
- * @version 1.1.1, 15-07-2018
+ * @version 1.1.2, 26-07-2018
  * 
  * @brief File contenente l'implementazione della classe Applicazione.
  * 
@@ -90,7 +90,7 @@ CodiceScena Applicazione::disegnaVista = []{
 CodiceSistemaRiferimentoVisivo Applicazione::impostaCameraVista =[](int w, int h){
 	ProiezioneOrtogonale campo{
 
-        CampoVisivo(0.0,(double)w,(double)h,0.0,-500,500),
+        CampoVisivo(0.0,(double)w,(double)h,0.0,-800,800),
         Area( // finestra visiva
                 OrigineArea(0,0),
                 DimensioneArea(h,w)

@@ -56,6 +56,7 @@ using namespace std;
 
 #include "rettangolo.h"
 #include "galassia.h"
+#include "sfera.h"
 using namespace Grafica;
 
 #include "etichetta.h"
@@ -188,6 +189,10 @@ namespace GUI {
     protected:
         const double spessore = 8.0;///< spessore della sfumatura di colore dello sfondo
         const double spessoreBarra = 20.0;
+        /* fattori di correzione cordinate logo */
+        const double xCorrezioneLogo = -80;
+        const double yCorrezioneLogo = -520.0;
+        const double zCorrezioneLogo = 350;
         /**
          * Verifica se un componente interno è un'etichetta.
          * @param componente

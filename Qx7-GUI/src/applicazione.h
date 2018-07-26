@@ -39,7 +39,7 @@
  * @file applicazione.h
  * @author Dr. Domenico della Peruta
  * @date 04-05-2018
- * @version  1.1.1, 15-07-2018
+ * @version  1.1.2, 26-07-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Applicazione.
  * 

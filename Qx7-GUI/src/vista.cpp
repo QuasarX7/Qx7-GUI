@@ -111,15 +111,11 @@ Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore
     );
     logo = Utili::crea<Galassia>(
     		sfumatura,
-			Punto{sfondo->lunghezza()-120,-220.0,350},
-			120.0,
+			Punto{sfondo->lunghezza()+xCorrezioneLogo,yCorrezioneLogo,zCorrezioneLogo},
+			70.0,
 			(size_t)8000,
 			(size_t)5
 	);
-
-    //logo->ruota(45,Asse::X);
-    //logo->ruota(45,Asse::Z);
-    //logo->ruota(-45,Asse::Y);
 
     /* SEGNALI */
     click.connetti(this, &Vista::azione);
@@ -283,10 +279,10 @@ void Vista::disegna(){
                  area.dimensione().altezza()  -2 * spessore,
                  area.dimensione().lunghezza()-2 * spessore
     );
-//  infoDebug();
-    logo->posiziona(Punto{(double)area.dimensione().lunghezza()-120.0,-220.0,350.0});
+    infoDebug();
+    logo->posiziona(Punto{(double)area.dimensione().lunghezza()+xCorrezioneLogo,yCorrezioneLogo,zCorrezioneLogo});
     glPushMatrix();
-    glRotated(-45,1.0,0.0,0.0);
+    glRotated(-60,1.0,0.0,0.0);
     logo->disegna();
     glPopMatrix();
     sfondo->disegna();
