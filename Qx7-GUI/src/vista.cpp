@@ -55,6 +55,7 @@ Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore
     coloreSfondo = colore;
     coloreBordoInattivo = colore.combina(sfumatura);
     
+    // crea sfondo
     sfondo= Utili::crea<Rettangolo>(
         coloreSfondo,
         coloreBordoInattivo,
@@ -63,8 +64,8 @@ Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore
         static_cast<double>(area.dimensione().lunghezza()) - 2*spessore
     );
     sfondo->bordo(spessore);
-    
-    
+
+    // crea le barra a scorrimento
     barraScorrimentoVerticale = Utili::crea<Rettangolo>(
             sfumatura,
             colore,
@@ -89,6 +90,7 @@ Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore
     );
     barraScorrimentoOrizzontale->bordo(2.0);
 
+    // crea cursori alle barre di scorrimento
     cursoreScorrimentoVerticale = Utili::crea<Rettangolo>(
             colore,
             sfumatura,
@@ -109,6 +111,8 @@ Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore
             spessoreBarra-2.0,
             0.0
     );
+
+    // crea logo
     logo = Utili::crea<Galassia>(
     		sfumatura,
 			Punto{sfondo->lunghezza()+xCorrezioneLogo,yCorrezioneLogo,zCorrezioneLogo},
@@ -142,13 +146,14 @@ double Vista::proporzioneOrizzontale() const{
     return area.dimensione().lunghezza()/(double)areaComponenti.dimensione().lunghezza();
 }
 
-void Vista::disegnaBarraScorrimentoVerticale()const{
+void Vista::disegnaBarraScorrimentoVerticale(const OrigineArea& trasla)const{
+	/*La traslazione ha senso solo quando viene usata dalle classe derivata (es.: Pannello)*/
     const double proporzione = proporzioneVerticale();
-    double y =  - areaComponenti.origine().y()*proporzione;
+    double yScostamento =  (trasla.y() - areaComponenti.origine().y())*proporzione;
     cursoreScorrimentoVerticale->posiziona(
         Punto{
-            area.dimensione().lunghezza()-spessoreBarra+1.0,
-            y
+            trasla.x()+area.dimensione().lunghezza()-spessoreBarra+1.0,
+            trasla.y()+yScostamento
         }
     );
     cursoreScorrimentoVerticale->dimensiona(
@@ -160,8 +165,8 @@ void Vista::disegnaBarraScorrimentoVerticale()const{
     
     barraScorrimentoVerticale->posiziona(
         Punto{
-            area.dimensione().lunghezza()-spessoreBarra,
-            0.0
+			trasla.x()+area.dimensione().lunghezza()-spessoreBarra,
+			trasla.y()+ 0.0
         }
     );
     barraScorrimentoVerticale->dimensiona(
@@ -172,16 +177,18 @@ void Vista::disegnaBarraScorrimentoVerticale()const{
     
 }
 
-void Vista::disegnaBarraScorrimentoOrizzontale()const{
+void Vista::disegnaBarraScorrimentoOrizzontale(const OrigineArea& trasla)const{
+	/*La traslazione ha senso solo quando viene usata dalle classe derivata (es.: Pannello)*/
     const double proporzione = proporzioneOrizzontale();
-    double x =  - areaComponenti.origine().x()*proporzione;
+    double xScostamento =  (trasla.x()-areaComponenti.origine().x())*proporzione;
     
     cursoreScorrimentoOrizzontale->posiziona(
         Punto{
-            x,
-            area.dimensione().altezza()-spessoreBarra+1.0
+    		trasla.x()+xScostamento,
+    		trasla.y()+area.dimensione().altezza()-spessoreBarra+1.0
         }
     );
+
     cursoreScorrimentoOrizzontale->dimensiona(
             spessoreBarra-2.0,
             barraScorrimentoOrizzontale->lunghezza()*proporzione
@@ -190,8 +197,8 @@ void Vista::disegnaBarraScorrimentoOrizzontale()const{
     
     barraScorrimentoOrizzontale->posiziona(
         Punto{
-            0.0,
-            area.dimensione().altezza()-spessoreBarra
+    		trasla.x()+ 0.0,
+    		trasla.y()+area.dimensione().altezza()-spessoreBarra
         }
     );
     barraScorrimentoOrizzontale->dimensiona(
@@ -203,50 +210,54 @@ void Vista::disegnaBarraScorrimentoOrizzontale()const{
 }
    
 
-void Vista::limiteCursoreVerticale(){
+void Vista::limiteCursoreVerticale(int estremoSup){
     const int altoBarraCursore = cursoreScorrimentoVerticale->localizzazione().y();
     const int bassoBarraCursore = altoBarraCursore + cursoreScorrimentoVerticale->altezza();
     /* LIMITE INFERIORE */
-    if(bassoBarraCursore > area.dimensione().altezza()){
+    if(bassoBarraCursore > estremoSup + area.dimensione().altezza()){
         // [1] effetto calamita
         //      sposta i componenti verso il basso quando dilatando
         //      la finestra la barra arriva al limite inferiore
         // [2] effetto molla
         //      muove la barra verso l'alto quando la vista supera il limite 
         //      inferiore della finestra 
-        spostaComponenti(0,bassoBarraCursore-area.dimensione().altezza());
+        spostaComponenti(0,bassoBarraCursore-(estremoSup + area.dimensione().altezza()));
     } 
     
     /* LIMITE SUPERIORE*/
-    if(altoBarraCursore <= 0){
+    if(altoBarraCursore <= estremoSup){
         // [1] effetto molla
         //      muove la barra verso il basso quando la vista supera il limite 
         //      superiore della finestra 
-        int yCursoreBasso = cursoreScorrimentoVerticale->altezza();
+        int yCursoreBasso = estremoSup + cursoreScorrimentoVerticale->altezza();
         int dilatazione = yCursoreBassoMax - yCursoreBasso;
         spostaComponenti(0, dilatazione > 0 ? -dilatazione : dilatazione );
         
     }else{
-        yCursoreBassoMax= cursoreScorrimentoVerticale->altezza();
+        yCursoreBassoMax= estremoSup + cursoreScorrimentoVerticale->altezza();
     }
 }
 
-void Vista::limiteCursoreOrizzontale(){
+void Vista::limiteCursoreOrizzontale(int estremoSX){
     const int sinistraBarraCursore = cursoreScorrimentoOrizzontale->localizzazione().x();
     const int destraBarraCursore = sinistraBarraCursore + cursoreScorrimentoOrizzontale->lunghezza();
     /* LIMITE DESTRO */
-    if(destraBarraCursore > area.dimensione().lunghezza()){
-        spostaComponenti(destraBarraCursore-area.dimensione().lunghezza(),0);
+    if(destraBarraCursore > estremoSX + area.dimensione().lunghezza()){
+        spostaComponenti(destraBarraCursore-(estremoSX + area.dimensione().lunghezza()),0);
     }
     /* LIMITE SINISTRO*/
-    if(sinistraBarraCursore <= 0){
-        int xCursoreSinistra = cursoreScorrimentoOrizzontale->lunghezza();
-        int dilatazione = xCursoreSinistraMax - xCursoreSinistra;
+    if(sinistraBarraCursore <= estremoSX){
+        int xCursoreSinistra = estremoSX + cursoreScorrimentoOrizzontale->lunghezza();
+        int dilatazione = xCursoreDestraMax - xCursoreSinistra;
         spostaComponenti( dilatazione > 0 ? -dilatazione : dilatazione,  0 );
         
     }else{
-        xCursoreSinistraMax= cursoreScorrimentoOrizzontale->lunghezza();
+        xCursoreDestraMax= estremoSX + cursoreScorrimentoOrizzontale->lunghezza();
     }
+}
+
+void Vista::riposizionaSfondo(){
+	sfondo->posiziona(Punto{spessore,spessore});
 }
 
 void Vista::disegna(){
@@ -265,7 +276,7 @@ void Vista::disegna(){
         limiteCursoreOrizzontale();
         disegnaBarraScorrimentoOrizzontale();
     }
-    
+
     // disegna componenti interni
     for(size_t i=0; i < numeroFigli(); i++){
         auto componente = dynamic_pointer_cast<Componente>(figlio(i));
@@ -273,12 +284,13 @@ void Vista::disegna(){
             componente->disegna();
         }
     }
-    // reimposta specifiche della figura
-    sfondo->posiziona(Punto{spessore,spessore});
+    // reimposta specifiche della
     sfondo->dimensiona(
                  area.dimensione().altezza()  -2 * spessore,
                  area.dimensione().lunghezza()-2 * spessore
     );
+    riposizionaSfondo();
+
     infoDebug();
     logo->posiziona(Punto{(double)area.dimensione().lunghezza()+xCorrezioneLogo,yCorrezioneLogo,zCorrezioneLogo});
     glPushMatrix();

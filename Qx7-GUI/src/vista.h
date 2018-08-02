@@ -68,6 +68,10 @@ using namespace std;
 
 namespace GUI {
     
+	/**
+	 * La classe Vista rappresenta quella superficie che raccoglie e gestisce tutti
+	 * i vari componenti grafici della GUI.
+	 */
     class Vista;
     /**
      * @var shared_ptr<Vista> pVista
@@ -194,6 +198,10 @@ namespace GUI {
         const double yCorrezioneLogo = -520.0;
         const double zCorrezioneLogo = 350;
         /**
+         * Ancora lo sfondo della vista alla finestra, assegnando le coordinate del primo vertice.
+         */
+        virtual void riposizionaSfondo();
+        /**
          * Verifica se un componente interno è un'etichetta.
          * @param componente
          * @return 
@@ -223,7 +231,7 @@ namespace GUI {
         /**
          * Disegna sulla vista le informazioni di debug.
          */
-        void infoDebug();
+        virtual void infoDebug();
         /**
          * Rapporto tra l'altezza dell'area reale della finestra e quella dell'area estesa dei componenti.
          * @return 
@@ -237,11 +245,11 @@ namespace GUI {
         /**
          * Impedisce ai componenti grafici di scorrere verticalmente oltre i limiti di estensione della vista.
          */
-        void limiteCursoreVerticale();
+        virtual void limiteCursoreVerticale(int estremoSup = 0);
         /**
          * Impedisce ai componenti grafici di scorrere orizzontalemente oltre i limiti di estensione della vista.
          */
-        void limiteCursoreOrizzontale();
+        virtual void limiteCursoreOrizzontale(int estremoSX = 0);
         
         /**
          * Limite della coord. "y" del punto più basso del cursore verticale di scorrimento
@@ -249,9 +257,9 @@ namespace GUI {
          */
         int yCursoreBassoMax = -1;
         /**
-         * Limite della coord. "x" del punto più a sinistra del cursore orizzontale di scorrimento
+         * Limite della coord. "x" del punto più a destra del cursore orizzontale di scorrimento
          */
-        int xCursoreSinistraMax = -1;
+        int xCursoreDestraMax = -1;
         
     
         /**
@@ -260,17 +268,24 @@ namespace GUI {
          * le barre di scorrimento laterali al campo della vista. 
          * @return 
          */
-        Area estensioneAreaComponenti()const;
+        virtual Area estensioneAreaComponenti()const;
         /**
          * Disegna una barra verticale e il suo cursore, per lo scorrimento verticale della finestra 
          * quando gli elementi della vista sono fuori dal margine superiore o inferiore.
+         *
+         * @param trasla 	di default è zero, permette di spostare la barra di scorrimento
+         * 					viene usata dalla classe ereditata "Pannello"
          */
-        void disegnaBarraScorrimentoVerticale()const;
+        virtual void disegnaBarraScorrimentoVerticale(const OrigineArea& trasla = OrigineArea{0,0})const;
         /**
          * Disegna una barra orizzontale e il suo cursore, per lo scorrimento orizzontale della finestra
          * quando gli elementi della vista sono fuori dal margine destro o sinistro.
+         *
+         ** @param trasla 	di default è zero, permette di spostare la barra di scorrimento
+         * 					viene usata dalla classe ereditata "Pannello"
+         *
          */
-        void disegnaBarraScorrimentoOrizzontale()const;
+        virtual void disegnaBarraScorrimentoOrizzontale(const OrigineArea& trasla = OrigineArea{0,0})const;
         
         void spostaComponenti(int dx, int dy);
         
