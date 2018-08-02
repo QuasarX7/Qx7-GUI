@@ -17,9 +17,10 @@ using namespace std;
 
 #include "applicazione.h"
 #include "etichetta.h"
-#include "campo.h"
+#include "campo_numerico.h"
 #include "pulsante.h"
 #include "area_testo.h"
+#include "pannello.h"
 using namespace GUI;
 
 using namespace Grafica;
@@ -36,12 +37,15 @@ const size_t ID_9 = 1019;
 const size_t ID_10 = 3000;
 const size_t ID_11 = 3001;
 const size_t ID_12 = 3011;
-
+const size_t ID_13 = 3012;
+const size_t ID_14 = 3013;
 
 
 int main(int argc, char* argv[]) {
 
     Applicazione app(argc,argv);
+
+    /* test 1 */
 
     pVista vistaTest1 = Utili::crea<Vista>(
         "Test 1",
@@ -90,6 +94,9 @@ int main(int argc, char* argv[]) {
     pAreaTesto area1 = Oggetto::crea<AreaTesto>(vistaTest1,ID_5,OrigineArea{-200,700},(size_t)30,(size_t)6);
     app.aggiungiVista(vistaTest1);
 
+
+    /* test 2 */
+
     pVista vistaTest2 = Utili::crea<Vista>(
 		"Test 2",
 		Area{
@@ -118,7 +125,7 @@ int main(int argc, char* argv[]) {
 			TipoCarattere::TIMES_ROMAN_24
 	);
 
-    pCampo campoNumero1  = Oggetto::crea<Campo>(
+    pCampoNumerico campoNumero1  = Oggetto::crea<CampoNumerico>(
     		vistaTest2,
 			ID_8,
 			OrigineArea{200,150},
@@ -134,15 +141,88 @@ int main(int argc, char* argv[]) {
 			TipoCarattere::TIMES_ROMAN_24
 	);
 
-	pCampo campoNumero2 = Oggetto::crea<Campo>(
+	pCampoNumerico campoNumero2 = Oggetto::crea<CampoNumerico>(
 			vistaTest2,
 			ID_10,
 			OrigineArea{200,200},
 			(size_t)15
 	);
 
+	pCampoNumerico campoNumero3 = Oggetto::crea<CampoNumerico>(
+				vistaTest2,
+				ID_13,
+				OrigineArea{200,250},
+				(size_t)15
+		);
+	app.aggiungiVista(vistaTest2);
 
-    app.aggiungiVista(vistaTest2);
+	pPulsante pulsante = Oggetto::crea<Pulsante>(
+			vistaTest2,
+			ID_14,
+			"Somma",
+			OrigineArea{50,250}
+    );
+
+	CodiceAzione clic = [](pVista vista){
+		pCampoNumerico operando1 = vista->componente<CampoNumerico>(ID_8);
+		pCampoNumerico operando2 = vista->componente<CampoNumerico>(ID_10);
+
+		pCampoNumerico risultato = vista->componente<CampoNumerico>(ID_13);
+		double somma = operando1->valore() + operando2->valore();
+		risultato->testo(std::to_string(somma));
+	};
+
+	pulsante->comportamentoClick(clic);
+
+	/* test 3 */
+
+	pVista vistaTest3 = Utili::crea<Vista>(
+			"Test 3",
+			Area{
+				OrigineArea{250,150},
+				DimensioneArea{500,800}
+			},
+			ARANCIONE,
+			ROSSO
+		);
+	pEtichetta etichettaTitolo3  = Oggetto::crea<Etichetta>(
+			vistaTest3,
+			ID_11,
+			"Vista Panello",
+			OrigineArea{200,0},
+			BLU,
+			TipoCarattere::HELVETICA_18
+	);
+
+
+	pPannello pannello1 = Oggetto::crea<Pannello>(
+			vistaTest3,
+			"pannello test",
+			Area{
+				OrigineArea{90,150},
+				DimensioneArea{100,150}
+			}
+	);
+
+	pPannello pannello2 = Oggetto::crea<Pannello>(
+				vistaTest3,
+				"pannello test2",
+				Area{
+					OrigineArea{250,100},
+					DimensioneArea{100,150}
+				}
+		);
+// /*
+	pEtichetta etichettaPannello  = Oggetto::crea<Etichetta>(
+				pannello1,
+				ID_12,
+				"Pannello",
+				OrigineArea{10,100},
+				BLU,
+				TipoCarattere::GENERICO_PICCOLO
+		);
+// */
+    app.aggiungiVista(vistaTest3);
 
     app.esegui();
 
