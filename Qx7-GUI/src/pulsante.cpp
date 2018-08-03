@@ -135,9 +135,11 @@ void Pulsante::azione(const Mouse& mouse){
                     }
                 }
                 figura->ingrandisci(1);
+                bordoFocus->ingrandisci(1);
                 glutPostRedisplay();
             }else  if(mouse.stato() == StatoPulsante::GIU){
                 figura->ingrandisci(1.10);
+                bordoFocus->ingrandisci(1.10);
                 glutPostRedisplay();
                 
             }
