@@ -37,10 +37,10 @@
  ****************************************************************************/
 
 /**
- * @file azioni.cpp
+ * @file figura.cpp
  * @author Dr. Domenico della Peruta
  * @date 23-03-2018
- * @version 1.0.2, 15-07-2018
+ * @version 1.0.3, 03-08-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Figura.
  * 
@@ -83,7 +83,6 @@ void Figura::trasforma(const Vettore& baricentro)const{
     //scala
     if(scala != 1.0){
         glScaled(scala, scala, scala);
-        glTranslated(-baricentro.x(),-baricentro.y(),-baricentro.z());
     }
     
 }

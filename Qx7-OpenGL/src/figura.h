@@ -37,10 +37,10 @@
  ****************************************************************************/
 
 /**
- * @file azioni.h
+ * @file figura.h
  * @author Dr. Domenico della Peruta
  * @date 23-03-2018
- * @version 1.0.1, 15-07-2018
+ * @version 1.0.3, 03-08-2018
  * 
  * @brief File contenente la definizione e l'implementazione dei metodi della classe Figura.
  * 
