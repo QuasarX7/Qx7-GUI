@@ -77,7 +77,7 @@ class CampoNumerico: public Campo {
 		 * Valore numerico in virgola moblile.
 		 * @return
 		 */
-		double valore()const;
+		virtual double valore()const;
 	protected:
 		virtual void inputTastiera(const Tastiera& tastiera)override; ///< segnale input tastiera (tasto)
 

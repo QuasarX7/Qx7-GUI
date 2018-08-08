@@ -51,6 +51,7 @@
 #define SRC_ORARIO_H_
 
 #include <sys/time.h>
+#include <memory>
 #include <cmath>
 #include <string>
 #include <sstream>
@@ -58,6 +59,9 @@
 using namespace std;
 
 namespace Utili {
+
+class Orario;
+typedef shared_ptr<Orario> pOrario;
 
 enum class UnitàTemporale{
 	ANNO,MESE,GIORNO,ORA,MINUTO,SECONDO,MILLI_SECONDO
@@ -129,6 +133,7 @@ private:
 	float _secondi;
 
 };
+
 
 } /* namespace Utili */
 
