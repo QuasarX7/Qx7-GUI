@@ -11,6 +11,7 @@
  * Created on 14 gennaio 2018, 9.09
  */
 #include <memory>
+#include <string>
 #include <cstdlib>
 #include <iostream>
 using namespace std;
@@ -21,6 +22,9 @@ using namespace std;
 #include "pulsante.h"
 #include "area_testo.h"
 #include "pannello.h"
+#include "orario.h"
+#include "campo_orario.h"
+using namespace Utili;
 using namespace GUI;
 
 using namespace Grafica;
@@ -39,6 +43,10 @@ const size_t ID_11 = 3001;
 const size_t ID_12 = 3011;
 const size_t ID_13 = 3012;
 const size_t ID_14 = 3013;
+const size_t ID_15 = 3015;
+const size_t ID_16 = 3016;
+const size_t ID_17 = 3017;
+const size_t ID_18 = 3018;
 
 
 int main(int argc, char* argv[]) {
@@ -222,7 +230,62 @@ int main(int argc, char* argv[]) {
 				TipoCarattere::GENERICO_PICCOLO
 		);
 // */
-    app.aggiungiVista(vistaTest3);
+
+	app.aggiungiVista(vistaTest3);
+
+	/* test 4 */
+	pVista vistaTest4 = Utili::crea<Vista>(
+			"Test 4",
+			Area{
+				OrigineArea{350,250},
+				DimensioneArea{500,800}
+			},
+			BLU,
+			VERDE
+		);
+
+	pCampoOrario campoOrario1  = Oggetto::crea<CampoOrario>(
+			vistaTest4,
+			ID_15,
+			OrigineArea{200,150}
+	);
+
+	pCampoOrario campoOrario2  = Oggetto::crea<CampoOrario>(
+			vistaTest4,
+			ID_16,
+			OrigineArea{200,250}
+	);
+
+	pCampoNumerico campoNumero4 = Oggetto::crea<CampoNumerico>(
+			vistaTest4,
+			ID_17,
+			OrigineArea{200,450},
+			(size_t)15
+	);
+
+	pPulsante pulsante2 = Oggetto::crea<Pulsante>(
+			vistaTest4,
+			ID_18,
+			string{"C"},
+			OrigineArea{250,350}
+	);
+	pulsante2->colora(ROSSO,ColoreComponente::TESTO);
+
+	CodiceAzione clic2 = [](pVista vista){
+		string s;
+		auto campo1 = vista->componente<CampoOrario>(ID_15);
+		auto campo2 = vista->componente<CampoOrario>(ID_16);
+
+		Orario o = campo1->orario();
+		s = std::to_string( o.differenza(campo2->orario()) );
+		vista->componente<CampoNumerico>(ID_17)->testo(s);
+	};
+
+	pulsante2->comportamentoClick(clic2);
+
+
+    app.aggiungiVista(vistaTest4);
+
 
     app.esegui();
 

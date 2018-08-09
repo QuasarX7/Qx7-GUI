@@ -89,7 +89,7 @@ namespace GUI {
          */
         Area zonaOccupata()const{return area;}
         
-        void colora(Colore colore, ColoreComponente componente);
+        void colora(const Colore& colore, ColoreComponente componente);
         Colore colore(ColoreComponente componente)const;
         
         

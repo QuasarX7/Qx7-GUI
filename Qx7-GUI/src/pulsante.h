@@ -74,7 +74,7 @@ namespace GUI {
         Pulsante(size_t ID, const string& etichetta,const OrigineArea& posizione);
         
         virtual ~Pulsante(){}
-        void colora(const Colore& sfondo,const Colore& testo, const Colore& bordo);
+        void coloraPulsante(const Colore& sfondo,const Colore& testo, const Colore& bordo);
         
         void disegna()override;
         

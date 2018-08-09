@@ -224,7 +224,7 @@ bool Componente::eventoLocale(const Cursore &mouse){
     
 }
 
-void Componente::colora(Colore colore, ColoreComponente componente){
+void Componente::colora(const Colore& colore, ColoreComponente componente){
     switch(componente){
         case SFONDO: coloreSfondo = colore; break;
         case BORDO:  coloreBordo  = colore; break;

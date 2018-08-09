@@ -76,7 +76,7 @@ codiceAzione{nullptr}
 
 
 Pulsante::Pulsante(size_t ID, const string& etichetta,const OrigineArea& posizione)
-: Pulsante{ID,etichetta,Area{posizione,DimensioneArea{30,32 + (int)etichetta.size()*4}} }
+: Pulsante{ID,etichetta,Area{posizione,DimensioneArea{15,15 + (int)etichetta.size()*8}} }
 {}
 
 Punto Pulsante::posizioneCorrenteTesto(const string& etichetta){
@@ -99,6 +99,7 @@ void Pulsante::disegna(){
     // disegna
     if(area.dimensione().altezza() >= 15 && area.dimensione().lunghezza() >= (testo->testo().numeroCaratteri()+1) * 8){
         testo->posiziona(posizioneCorrenteTesto());
+        testo->sfondo(coloreTesto);
         testo->disegna();
     }
     figura->disegna();
@@ -112,7 +113,7 @@ void Pulsante::disegna(){
     
 }
 
-void Pulsante::colora(const Colore& sfondo,const Colore& testo, const Colore& bordo){
+void Pulsante::coloraPulsante(const Colore& sfondo,const Colore& testo, const Colore& bordo){
     coloreTesto  = testo;
     coloreBordoInattivo = coloreBordo  = bordo;
     coloreSfondo = sfondo;
