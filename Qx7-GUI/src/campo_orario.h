@@ -28,7 +28,7 @@ public:
 	 * Ora inserita.
 	 * @return
 	 */
-	Orario orario()const{return _orario != nullptr ? *_orario : Orario{0,0};}
+	pOrario orario()const{return _orario;}
 
 protected:
 		virtual void inputTastiera(const Tastiera& tastiera)override; ///< segnale input tastiera (tasto)
