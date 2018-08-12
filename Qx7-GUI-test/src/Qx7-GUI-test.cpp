@@ -16,13 +16,14 @@
 #include <iostream>
 using namespace std;
 
+#include "orario.h"
+#include "data.h"
 #include "applicazione.h"
 #include "etichetta.h"
 #include "campo_numerico.h"
 #include "pulsante.h"
 #include "area_testo.h"
 #include "pannello.h"
-#include "orario.h"
 #include "campo_orario.h"
 using namespace Utili;
 using namespace GUI;
@@ -273,12 +274,16 @@ int main(int argc, char* argv[]) {
 
 	CodiceAzione clic2 = [](pVista vista){
 		string s;
-		auto campo1 = vista->componente<CampoOrario>(ID_15);
-		auto campo2 = vista->componente<CampoOrario>(ID_16);
-
-		Orario o = campo1->orario();
-		s = std::to_string( o.differenza(campo2->orario()) );
-		vista->componente<CampoNumerico>(ID_17)->testo(s);
+		pCampoOrario campo1 = vista->componente<CampoOrario>(ID_15);
+		pCampoOrario campo2 = vista->componente<CampoOrario>(ID_16);
+		if(campo1 != nullptr && campo2 != nullptr){
+			if(campo1->orario() != nullptr && campo2->orario() != nullptr){
+				s = std::to_string( campo1->orario()->differenza(*campo2->orario(),UnitàTemporale::ANNO) );
+			}else{
+				s = "?";
+			}
+			vista->componente<CampoNumerico>(ID_17)->testo(s);
+		}
 	};
 
 	pulsante2->comportamentoClick(clic2);
