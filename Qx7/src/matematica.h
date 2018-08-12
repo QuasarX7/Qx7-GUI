@@ -261,6 +261,9 @@ namespace Utili {
         else if(dx < 0 && dy <= 0) return atan(dy/dx) +π;
     }
     
+
+
+
             
 }
 
