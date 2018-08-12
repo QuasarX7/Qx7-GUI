@@ -40,7 +40,7 @@
  * @file orario.cpp
  * @author Dr. Domenico della Peruta
  * @date 07-08-2018
- * @version 1.0.0, 07-08-2018
+ * @version 1.0.1, 11-08-2018
  *
  * @brief File contenente l'implementazione dei metodi della classe Orario.
  *
@@ -192,28 +192,12 @@ string Orario::stampa(FormatoOrario formato){
 	return ss.str();
 }
 
-string Orario::doppiaCifraNumero(int numero)const{
-	stringstream ss;
-	if(numero < 10)
-		ss <<  "0";
-	ss << numero;
-	return ss.str();
-}
 
-string Orario::triplaCifraNumero(int numero)const{
-	stringstream ss;
-	if(numero < 10)
-		ss <<  "00";
-	else if(numero < 100)
-		ss <<  "0";
-	ss << numero;
-	return ss.str();
-}
 
 
 Orario Orario::oraAttuale(){
 	timeval tempo; // struttura contenente i secondi e i microsecondi
-	gettimeofday(&tempo, 0);
+	gettimeofday(&tempo, 0);//acquisizione dal S.O.
 	time_t t = tempo.tv_sec;
 	auto adesso = localtime(&t);
 	return Orario{
@@ -226,14 +210,17 @@ Orario Orario::oraAttuale(){
 
 float Orario::valore(UnitàTemporale tipo)const{
 	switch(tipo){
-	case UnitàTemporale::MILLI_SECONDO: return valore()*1000;
-	case UnitàTemporale::SECONDO: 		return _secondi + _minuti*60 + _ore*3600;
-	case UnitàTemporale::MINUTO:		return valore()/60;
-	case UnitàTemporale::ORA:			return valore()/3600;
-	default:
-			throw std::invalid_argument{"Errore input metodo 'Orario::valore(UnitàTemporale tipo)' "};
+	case UnitàTemporale::MILLI_SECONDO: return valore()*1000.0f;
+	case UnitàTemporale::SECONDO: 		return _secondi + _minuti*60.0f + _ore*3600.0f;
+	case UnitàTemporale::MINUTO:		return valore()/60.0f;
+	case UnitàTemporale::ORA:			return valore()/3600.0f;
+	case UnitàTemporale::GIORNO:		return valore(UnitàTemporale::ORA) / 24.0f;
+	case UnitàTemporale::MESE:			return valore(UnitàTemporale::GIORNO) / 30.4375f;
+	case UnitàTemporale::ANNO:			return valore(UnitàTemporale::MESE) / 12.0f;
 	};
+	return std::numeric_limits<float>::quiet_NaN();
 }
+
 
 
 

@@ -40,7 +40,7 @@
  * @file orario.h
  * @author Dr. Domenico della Peruta
  * @date 07-08-2018
- * @version 1.0.0, 07-08-2018
+ * @version 1.0.1, 11-08-2018
  *
  * @brief File contenente l'intestazione della classe Orario.
  *
@@ -50,6 +50,7 @@
 #ifndef SRC_ORARIO_H_
 #define SRC_ORARIO_H_
 
+
 #include <sys/time.h>
 #include <memory>
 #include <cmath>
@@ -58,14 +59,13 @@
 #include <iostream>
 using namespace std;
 
+#include "momento.h"
+
 namespace Utili {
 
 class Orario;
 typedef shared_ptr<Orario> pOrario;
 
-enum class UnitàTemporale{
-	ANNO,MESE,GIORNO,ORA,MINUTO,SECONDO,MILLI_SECONDO
-};
 
 enum class FormatoOrario{
 	SI_SECONDI,			// 12:25:05
@@ -75,7 +75,7 @@ enum class FormatoOrario{
 /**
  * La classe Orario gestisce e spemplifica i calcoli temporali sugli orari.
  */
-class Orario {
+class Orario : public Momento{
 public:
 	Orario(int h,int min, float sec=0.0f);
 	Orario(const Orario& copia):_ore{copia._ore},_minuti{copia._minuti},_secondi{copia._secondi}{}
@@ -95,45 +95,21 @@ public:
 	string stampa(FormatoOrario formato = FormatoOrario::NO_SECONDI);
 
 	friend ostream& operator<<(ostream& out, const Orario& orario)
-	{out << orario.ore() << ":" << orario.minuti() <<":"<< orario.secondi() <<" ["<< orario.millisecondi()<<"ms]"; return out;}
+	{out << orario.doppiaCifraNumero(orario.ore()) << ":" << orario.doppiaCifraNumero(orario.minuti()) <<":"<< orario.doppiaCifraNumero(orario.secondi()) <<" ["<< orario.millisecondi()<<"ms]"; return out;}
 
 	static Orario oraAttuale();
 
-	float valore(UnitàTemporale tipo=UnitàTemporale::SECONDO)const;
-
-	friend bool operator==(const Orario& a, const Orario& b)
-	{return a.valore() == b.valore();}
-
-	friend bool operator!=(const Orario& a, const Orario& b)
-	{return !(a == b);}
-
-	friend bool operator<(const Orario& a, const Orario& b)
-	{return a.valore() < b.valore();}
-
-
-	friend bool operator>(const Orario& a, const Orario& b)
-	{return b < a;}
-
-	friend bool operator<=(const Orario& a, const Orario& b)
-	{return (a == b) && (a < b);}
-
-	friend bool operator>=(const Orario& a, const Orario& b)
-	{return (a == b) && (a > b);}
-
-	float differenza(const Orario& confronto,UnitàTemporale tipo=UnitàTemporale::SECONDO)const
-	{return valore(tipo) - confronto.valore(tipo);}
+	virtual float valore(UnitàTemporale tipo=UnitàTemporale::SECONDO)const;
 
 
 
 private:
-	string doppiaCifraNumero(int numero)const;
-	string triplaCifraNumero(int numero)const;
+
 
 	int _ore,_minuti;
 	float _secondi;
 
 };
-
 
 } /* namespace Utili */
 
