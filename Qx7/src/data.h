@@ -39,7 +39,7 @@
  * @file data.h
  * @author Dr. Domenico della Peruta
  * @date 11-08-2018
- * @version 1.0.0, 11-08-2018
+ * @version 1.0.1, 12-08-2018
  *
  * @brief File contenente l'intestazione della classe Data.
  *
@@ -115,6 +115,7 @@ public:
 
 	virtual float valore(UnitàTemporale tipo=UnitàTemporale::GIORNO)const;
 
+	string giornoSettimana()const{return GiornoSettimana[giornoSettimana(_giorno,_mese,_anno)];}
 protected:
 	int giorniMese(int mm,int aaaa)const;
 	int giornoSettimana(int gg,int mm,int aaaa)const;

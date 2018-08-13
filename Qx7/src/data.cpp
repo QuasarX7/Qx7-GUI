@@ -40,7 +40,7 @@
  * @file data.cpp
  * @author Dr. Domenico della Peruta
  * @date 11-08-2018
- * @version 1.0.0, 11-08-2018
+ * @version 1.0.1, 12-08-2018
  *
  * @brief File contenente l'implementazione dei metodi della classe Data.
  *
@@ -152,12 +152,12 @@ string Data::stampa(FormatoData tipo)const{
 	string spazio = " ";
 	switch(tipo){
 	case FormatoData::ESTESA:
-		ss << GiornoSettimana[giornoSettimana(_giorno,_mese,_anno)] << spazio;
+		ss << giornoSettimana() << spazio;
 	case FormatoData::NORMALE: ss << doppiaCifraNumero(_giorno)
 	<< separatore << doppiaCifraNumero(_mese) << separatore  << _anno; break;
 
 	case FormatoData::ESTESA_TESTUALE:
-		ss << GiornoSettimana[giornoSettimana(_giorno,_mese,_anno)] << spazio;
+		ss << giornoSettimana() << spazio;
 	case FormatoData::TESTUALE:
 		ss << _giorno << spazio << Mese[_mese-1] << spazio  << _anno ; break;
 
