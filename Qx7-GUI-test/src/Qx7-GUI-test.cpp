@@ -25,6 +25,8 @@ using namespace std;
 #include "area_testo.h"
 #include "pannello.h"
 #include "campo_orario.h"
+#include "campo_data.h"
+#include "campo.h"
 using namespace Utili;
 using namespace GUI;
 
@@ -48,6 +50,13 @@ const size_t ID_15 = 3015;
 const size_t ID_16 = 3016;
 const size_t ID_17 = 3017;
 const size_t ID_18 = 3018;
+const size_t ID_19 = 3019;
+const size_t ID_20 = 3020;
+
+const size_t ID_21 = 4020;
+const size_t ID_22 = 5020;
+const size_t ID_23 = 6020;
+const size_t ID_24 = 7020;
 
 
 int main(int argc, char* argv[]) {
@@ -234,6 +243,8 @@ int main(int argc, char* argv[]) {
 
 	app.aggiungiVista(vistaTest3);
 
+
+
 	/* test 4 */
 	pVista vistaTest4 = Utili::crea<Vista>(
 			"Test 4",
@@ -248,46 +259,119 @@ int main(int argc, char* argv[]) {
 	pCampoOrario campoOrario1  = Oggetto::crea<CampoOrario>(
 			vistaTest4,
 			ID_15,
-			OrigineArea{200,150}
+			OrigineArea{100,150}
 	);
 
 	pCampoOrario campoOrario2  = Oggetto::crea<CampoOrario>(
 			vistaTest4,
 			ID_16,
-			OrigineArea{200,250}
-	);
-
-	pCampoNumerico campoNumero4 = Oggetto::crea<CampoNumerico>(
-			vistaTest4,
-			ID_17,
-			OrigineArea{200,450},
-			(size_t)15
+			OrigineArea{100,200}
 	);
 
 	pPulsante pulsante2 = Oggetto::crea<Pulsante>(
 			vistaTest4,
 			ID_18,
-			string{"C"},
-			OrigineArea{250,350}
+			string{"Differenza"},
+			OrigineArea{100,250}
 	);
+
+	pCampoNumerico campoNumero4 = Oggetto::crea<CampoNumerico>(
+			vistaTest4,
+			ID_17,
+			OrigineArea{100,300},
+			(size_t)15
+	);
+
+	pCampoNumerico campoNumero5 = Oggetto::crea<CampoNumerico>(
+			vistaTest4,
+			ID_19,
+			OrigineArea{100,350},
+			(size_t)15
+	);
+	pCampoNumerico campoNumero6 = Oggetto::crea<CampoNumerico>(
+			vistaTest4,
+			ID_20,
+			OrigineArea{100,400},
+			(size_t)15
+	);
+
 	pulsante2->colora(ROSSO,ColoreComponente::TESTO);
 
 	CodiceAzione clic2 = [](pVista vista){
-		string s;
+		string s,s2,s3;
 		pCampoOrario campo1 = vista->componente<CampoOrario>(ID_15);
 		pCampoOrario campo2 = vista->componente<CampoOrario>(ID_16);
 		if(campo1 != nullptr && campo2 != nullptr){
 			if(campo1->orario() != nullptr && campo2->orario() != nullptr){
-				s = std::to_string( campo1->orario()->differenza(*campo2->orario(),UnitàTemporale::ANNO) );
+				s  = std::to_string( campo1->orario()->differenza( *campo2->orario(),UnitàTemporale::MINUTO) );
+				s2 = std::to_string( campo1->orario()->differenza( *campo2->orario(),UnitàTemporale::ORA) );
+				s3 = std::to_string( campo1->orario()->differenza( *campo2->orario(),UnitàTemporale::SECONDO) );
+
 			}else{
-				s = "?";
+				s3 = s2 = s = "?";
 			}
-			vista->componente<CampoNumerico>(ID_17)->testo(s);
+			s +=" min";
+			s2+=" h";
+			s3+=" s";
+			vista->componente<CampoNumerico>(ID_17)->testo(s3);
+			vista->componente<CampoNumerico>(ID_19)->testo(s);
+			vista->componente<CampoNumerico>(ID_20)->testo(s2);
 		}
 	};
 
 	pulsante2->comportamentoClick(clic2);
 
+
+	pCampoData campoData  = Oggetto::crea<CampoData>(
+			vistaTest4,
+			ID_21,
+			OrigineArea{350,150}
+	);
+
+	pPulsante pulsante3 = Oggetto::crea<Pulsante>(
+			vistaTest4,
+			ID_22,
+			string{"Analizza"},
+			OrigineArea{350,200}
+	);
+
+	pCampoNumerico campoNumero7 = Oggetto::crea<CampoNumerico>(
+			vistaTest4,
+			ID_23,
+			OrigineArea{350,250},
+			(size_t)15
+	);
+
+	pCampo campo = Oggetto::crea<Campo>(
+				vistaTest4,
+				ID_24,
+				OrigineArea{350,300},
+				(size_t)15
+		);
+
+	CodiceAzione clic3 = [](pVista vista){
+
+		string s,s2;
+		pCampoData campo1 = vista->componente<CampoData>(ID_21);
+		if(campo1 != nullptr){
+			if(campo1->data() != nullptr){
+				s  = std::to_string( campo1->data()->valore() );
+				s2 = campo1->data()->giornoSettimana();
+			}else{
+				s = "?";
+			}
+			s +=" gg";
+			auto p = vista->componente<CampoNumerico>(ID_23);
+			if(p != nullptr)
+				p->testo(s);
+			auto p2 = vista->componente<Campo>(ID_24);
+			if(p2 != nullptr)
+				p2->testo(s2);
+		}
+
+	};
+
+	pulsante3->comportamentoClick(clic3);
 
     app.aggiungiVista(vistaTest4);
 
