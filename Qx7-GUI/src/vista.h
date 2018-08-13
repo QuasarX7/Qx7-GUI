@@ -39,7 +39,7 @@
  * @file vista.h
  * @author Dr. Domenico della Peruta
  * @date 04-05-2018
- * @version 1.0.1, 15-07-2018
+ * @version 1.0.2, 12-08-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Vista.
  * 
@@ -189,6 +189,16 @@ namespace GUI {
         string debug()const override;
 
         void avviaLogo();
+        /**
+         * Permette di visualizzare in alto a sinistra le informazioni di debug della
+         * vista.
+         *
+         * @param abilita
+         */
+        void abilitaInfoDebug(bool abilita){abilitaDebug = abilita;}
+
+    private:
+        bool abilitaDebug = false;///< abilita disegno info di debug
         
     protected:
         const double spessore = 8.0;///< spessore della sfumatura di colore dello sfondo

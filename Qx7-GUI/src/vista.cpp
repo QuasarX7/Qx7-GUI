@@ -39,7 +39,7 @@
  * @file vista.cpp
  * @author Dr. Domenico della Peruta
  * @date 04-05-2018
- * @version 1.0.1, 15-07-2018
+ * @version 1.0.2, 12-08-2018
  * 
  * @brief File contenente l'implementazione delle metodi della classe Vista.
  * 
@@ -291,7 +291,8 @@ void Vista::disegna(){
     );
     riposizionaSfondo();
 
-    infoDebug();
+    if(abilitaDebug)infoDebug();
+
     logo->posiziona(Punto{(double)area.dimensione().lunghezza()+xCorrezioneLogo,yCorrezioneLogo,zCorrezioneLogo});
     glPushMatrix();
     glRotated(-60,1.0,0.0,0.0);
