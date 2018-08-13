@@ -51,7 +51,7 @@ using namespace GUI;
 
 void CampoNumerico::inputTastiera(const Tastiera& tastiera){
 	const bool numero = tastiera.carattere() >= '0' && tastiera.carattere() <= '9';
-	const bool separatore = tastiera.carattere() == '.' || tastiera.carattere() == ',';
+	const bool separatoreDecimale = tastiera.carattere() == separatore;
 	const bool segno = tastiera.carattere() == '-';
 	const bool cancella = tastiera.carattere() == 127;
 	bool conferma = numero || cancella;
@@ -61,10 +61,10 @@ void CampoNumerico::inputTastiera(const Tastiera& tastiera){
 	//controllo presenza del punto di separazione
 	bool separatoreNonInserito = true;
 	for(auto carattere : input->testo().stringa())
-		if(carattere == '.' || carattere == ',')
+		if(carattere == separatore)
 			separatoreNonInserito = false;
 	if(separatoreNonInserito)
-		conferma = conferma || separatore;
+		conferma = conferma || separatoreDecimale;
 
 	if(conferma)
 		Campo::inputTastiera(tastiera);
@@ -72,6 +72,20 @@ void CampoNumerico::inputTastiera(const Tastiera& tastiera){
 
 double CampoNumerico::valore()const{
 	char *scarto;
-	return std::strtod(input->testo().stringa().c_str(),&scarto);
+	auto stringa = input->testo().stringa();
+	if(stringa.find(',') >= 0 && stringa.find(',') < stringa.length())
+		stringa.replace(stringa.find(','),1,".");
+	return std::strtod(stringa.c_str(),&scarto);
+
+}
+
+bool CampoNumerico::verificaInput()const{
+	string stringa = input->testo().latino1();
+	if(stringa.length() != mascheraInput.stringa().length()) return false;
+	if(stringa.compare(mascheraInput.stringa())==0)return false;
+	for(auto i=0; i < stringa.length(); i++){
+		if((stringa[i] < '0' || stringa[i] > '9') && stringa[i] != separatore ) return false;
+	}
+	return true;
 
 }

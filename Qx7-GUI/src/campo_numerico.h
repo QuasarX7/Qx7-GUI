@@ -65,8 +65,8 @@ class CampoNumerico: public Campo {
 		 * @param numeroCaratteri
 		 * @param maschera
 		 */
-		CampoNumerico(size_t ID, const OrigineArea& posizione, size_t numeroCaratteri,const Maschera& maschera=Maschera{"",'_'}):
-			Campo{ID,posizione,numeroCaratteri,maschera}{}
+		CampoNumerico(size_t ID, const OrigineArea& posizione, size_t numeroCaratteri,char separatoreDecimale = ',',const Maschera& maschera=Maschera{"",'_'}):
+			Campo{ID,posizione,numeroCaratteri,maschera},separatore{separatoreDecimale} {}
 
 
 		/**
@@ -79,8 +79,12 @@ class CampoNumerico: public Campo {
 		 */
 		virtual double valore()const;
 	protected:
+
+		virtual bool verificaInput()const;
+
 		virtual void inputTastiera(const Tastiera& tastiera)override; ///< segnale input tastiera (tasto)
 
+		char separatore;
 	};
 
 	typedef shared_ptr<CampoNumerico> pCampoNumerico;
