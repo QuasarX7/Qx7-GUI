@@ -93,11 +93,17 @@ void CampoData::inputTastiera(const Tastiera& tastiera){
 	if(verificaInput()){
 
 		stringa = input->testo().latino1();
-		_data = Utili::crea<Data>(
-				std::atoi(stringa.substr(0,2).c_str()),
-				std::atoi(stringa.substr(3,2).c_str()),
-				std::atoi(stringa.substr(6,4).c_str())
-		);
+		try{
+			_data = Utili::crea<Data>(
+					std::atoi(stringa.substr(0,2).c_str()),
+					std::atoi(stringa.substr(3,2).c_str()),
+					std::atoi(stringa.substr(6,4).c_str())
+			);
+		}catch(std::invalid_argument e){
+			_data = nullptr;
+			input->testo() = mascheraInput.stringa();
+			indice = 0;
+		}
 
 	}else{
 		_data = nullptr;

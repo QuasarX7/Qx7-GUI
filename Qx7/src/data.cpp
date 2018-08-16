@@ -40,7 +40,7 @@
  * @file data.cpp
  * @author Dr. Domenico della Peruta
  * @date 11-08-2018
- * @version 1.0.1, 12-08-2018
+ * @version 1.0.2, 16-08-2018
  *
  * @brief File contenente l'implementazione dei metodi della classe Data.
  *
@@ -52,10 +52,14 @@ using namespace Utili;
 
 
 Data::Data(int gg,int mm, int aaaa){
-	if(gg > 0 && gg <= giorniMese(mm,aaaa) && mm > 0 && mm <= 12 && aaaa >= 0){
+	if(gg > 0 && gg <= giorniMese(mm,aaaa) && mm > 0 && mm <= 12 && aaaa > 0){
 		_giorno = gg;
 		_mese = mm;
 		_anno = aaaa;
+	}else{
+		stringstream ss;
+		ss << "Errore costruzione data '" << gg << "/" << mm <<"/" << aaaa << "'";
+		throw std::invalid_argument{ss.str()};
 	}
 }
 

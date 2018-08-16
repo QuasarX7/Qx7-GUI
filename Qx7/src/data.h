@@ -39,7 +39,7 @@
  * @file data.h
  * @author Dr. Domenico della Peruta
  * @date 11-08-2018
- * @version 1.0.1, 12-08-2018
+ * @version 1.0.2, 16-08-2018
  *
  * @brief File contenente l'intestazione della classe Data.
  *
@@ -98,6 +98,14 @@ const string Mese[]{
  */
 class Data : public Momento{
 public:
+	/**
+	 * Costruttore di data.
+	 *
+	 * @param gg
+	 * @param mm
+	 * @param aaaa
+	 * @throw std::invalid_argument 	data non formattata correttamente
+	 */
 	Data(int gg,int mm, int aaaa);
 	virtual ~Data() {}
 
