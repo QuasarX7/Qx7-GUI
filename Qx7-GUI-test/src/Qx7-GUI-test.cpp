@@ -14,6 +14,7 @@
 #include <string>
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 #include "orario.h"
@@ -26,6 +27,7 @@ using namespace std;
 #include "pannello.h"
 #include "campo_orario.h"
 #include "campo_data.h"
+#include "campo_menu.h"
 #include "campo.h"
 using namespace Utili;
 using namespace GUI;
@@ -57,6 +59,7 @@ const size_t ID_21 = 4020;
 const size_t ID_22 = 5020;
 const size_t ID_23 = 6020;
 const size_t ID_24 = 7020;
+const size_t ID_25 = 7120;
 
 
 int main(int argc, char* argv[]) {
@@ -339,28 +342,45 @@ int main(int argc, char* argv[]) {
 			vistaTest4,
 			ID_23,
 			OrigineArea{350,250},
-			(size_t)15
+			(size_t)20
 	);
 
+	pCampoMenu campoMenuGiorni = Oggetto::crea<CampoMenu>(
+			vistaTest4,
+			ID_25,
+			OrigineArea{550,250},
+			vector<string>()={"secondi","minuti","ore","giorni","mesi","anni"}
+	);
+	campoMenuGiorni->testo("secondi");
+
+
 	pCampo campo = Oggetto::crea<Campo>(
-				vistaTest4,
-				ID_24,
-				OrigineArea{350,300},
-				(size_t)15
-		);
+			vistaTest4,
+			ID_24,
+			OrigineArea{350,300},
+			(size_t)15
+	);
 
 	CodiceAzione clic3 = [](pVista vista){
 
 		string s,s2;
 		pCampoData campo1 = vista->componente<CampoData>(ID_21);
+		pCampoMenu campoMenu = vista->componente<CampoMenu>(ID_25);
 		if(campo1 != nullptr){
 			if(campo1->data() != nullptr){
-				s  = std::to_string( campo1->data()->valore() );
+				UnitàTemporale t = UnitàTemporale::SECONDO;
+
+				if(campoMenu->testo() == "minuti") t = UnitàTemporale::MINUTO;
+				else if(campoMenu->testo() == "ore") t = UnitàTemporale::ORA;
+				else if(campoMenu->testo() == "giorni") t = UnitàTemporale::GIORNO;
+				else if(campoMenu->testo() == "mesi") t = UnitàTemporale::MESE;
+				else if(campoMenu->testo() == "anni") t = UnitàTemporale::ANNO;
+
+				s  = std::to_string( campo1->data()->valore(t) );
 				s2 = campo1->data()->giornoSettimana();
 			}else{
 				s = "?";
 			}
-			s +=" gg";
 			auto p = vista->componente<CampoNumerico>(ID_23);
 			if(p != nullptr)
 				p->testo(s);

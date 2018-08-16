@@ -39,7 +39,7 @@
  * @file  campo.h
  * @author Dr. Domenico della Peruta
  * @date 25-05-2018
- * @version 1.0.2, 16-07-2018
+ * @version 1.0.3, 16-08-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Campo.
  * 
@@ -116,7 +116,7 @@ namespace GUI {
          * Imposta il testo da visualizzare nel campo.
          * @param stringa
          */
-        void testo(const string& stringa){input->testo().elimina();input->testo().aggiungi(stringa);}
+        void testo(const string& stringa);
         /**
          * Assegna il codice da eseguiri quando il campo acquisisce il focus
          * @param codice

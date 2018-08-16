@@ -38,8 +38,8 @@
 /**
  * @file  pulsante.cpp
  * @author Dr. Domenico della Peruta
- * @date 
- * @version 1.0.0, 03-06-2018
+ * @date 03-06-2018
+ * @version 1.0.1, 15-08-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Pulsante.
  * 
@@ -165,4 +165,10 @@ void Pulsante::inputTastiera(const Tastiera& tastiera){
                 break;
         }
     }
+}
+
+
+void Pulsante::rinomina(const string& etichetta){
+	if(testo != nullptr)
+		testo->testo() = etichetta;
 }

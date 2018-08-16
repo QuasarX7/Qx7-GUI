@@ -39,7 +39,7 @@
  * @file componente.cpp
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.2, 15/07/2018
+ * @version 1.0.3, 14/08/2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Componente.
  * 

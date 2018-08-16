@@ -39,7 +39,7 @@
  * @file componente.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.0, 
+ * @version 1.0.1, 15-08-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Etichetta.
  * 
@@ -88,6 +88,7 @@ namespace GUI {
          * Distruttore.
          */
         virtual ~Etichetta(){}
+
         /**
          * Abilita la colorazione decorativa dell'etichetta.
          *
@@ -95,6 +96,14 @@ namespace GUI {
          * @param applica	true (di default) abilita la decorazione; false la disabilita.
          */
         void abilita(ColoreComponente colore,bool applica=true);
+
+        /**
+         * Colora e abilita la decorzione dell'etichetta.
+         * @param sfondo
+         * @param bordo
+         */
+        void decora(const Colore& sfondoEtichetta, const Colore& bordoEtichetta);
+
         /**
          * Disegna l'etichetta.
          */

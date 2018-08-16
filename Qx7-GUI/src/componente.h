@@ -39,7 +39,7 @@
  * @file componente.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.2, 15/07/2018
+ * @version 1.0.3, 14/08/2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Componente.
  * 
@@ -67,6 +67,8 @@ using namespace Utili;
 
 
 namespace GUI {
+
+	const size_t NO_ID = 0; ///< valore ID nullo, per rendere il componente fantasma
     
     class Componente;
     typedef shared_ptr<Componente> pComponente;
@@ -74,9 +76,20 @@ namespace GUI {
     enum ColoreComponente{
         SFONDO,BORDO,TESTO,FOCUS,MOUSE,INATTIVO
     };
-    
+    /**
+     * La classe astratta Componente generalizza un semplice componente grafico
+     * GUI di input/output.
+     */
     class Componente: public Oggetto{
     public:
+    	/**
+    	 * Costruttore
+    	 *
+    	 * @param ID 			identificatore univoco di un elemento, se posto zero (NO_ID)
+    	 * 						il componente non viene marcato e diventa 'invisibile' alle
+    	 * 						azioni nella vista della finestra.
+    	 * @param superficie
+    	 */
         Componente(size_t ID, const Area& superficie);
         
         virtual ~Componente(){}
@@ -100,14 +113,19 @@ namespace GUI {
         pComponente ultimoComponenteAssociato();
         
         
-        //
-        
         OrigineArea origine()const{return area.origine();}
         void sposta(const OrigineArea& coordinate){area.origine(coordinate);}
         
+        DimensioneArea dimensione()const{return area.dimensione();}
+
         virtual void assegnaFocus();
         bool statoFocus()const{return focus;}
-        
+        /**
+         * Verifica che il cursore del mouse sia sul componente.
+         * @param mouse
+         * @return
+         */
+        virtual bool eventoLocale(const Cursore& mouse);
         
         /* SEGNALI */ 
         /* I segnali vengono emessi dall' "Applicazione" e trasmessi a tutti i "Componenti della 
@@ -119,7 +137,6 @@ namespace GUI {
         
         
     protected:
-        virtual bool eventoLocale(const Cursore& mouse);
         bool controlloID(size_t ID)const;
         
         /* SLOT */

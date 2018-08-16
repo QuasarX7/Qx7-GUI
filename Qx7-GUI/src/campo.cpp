@@ -39,7 +39,7 @@
  * @file  campo.cpp
  * @author Dr. Domenico della Peruta
  * @date 25-05-2018
- * @version 1.0.1, 15-07-2018
+ * @version 1.0.3, 16-08-2018
  * 
  * @brief File contenente l'implementazione della classe Campo.
  * 
@@ -268,4 +268,21 @@ void Campo::focusCeduto(){
         }
     }
 }
+
+void Campo::testo(const string& stringa){
+	input->testo().elimina();
+	input->testo().aggiungi(stringa);
+	indice = input->testo().numeroCaratteri();
+}
+
+
+
+
+
+
+
+
+
+
+
         

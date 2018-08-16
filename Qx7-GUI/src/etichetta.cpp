@@ -39,7 +39,7 @@
  * @file componente.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.0, 
+ * @version 1.0.1, 15-08-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Etichetta.
  * 
@@ -68,7 +68,7 @@ Etichetta::Etichetta(size_t ID, const string& testo, const OrigineArea& posizion
 void Etichetta::disegnaSfondo(const Colore& vista){
 	if(abilitaSfondo || abilitaBordo){
     	pRettangolo sfondo = Utili::crea<Rettangolo>(
-				abilitaSfondo == false ? vista : coloreSfondo,
+    			abilitaSfondo == false ? vista : coloreSfondo,
 				abilitaBordo  == false ? vista : coloreBordo,
 				area
 		);
@@ -114,6 +114,8 @@ void Etichetta::disegna(){
         );
         riflesso->disegna();
         disegnaSfondo(c);
+    }else{
+    	disegnaSfondo(GRIGIO_SCURO);
     }
     
 
@@ -123,4 +125,9 @@ void Etichetta::riscrivi(const string& testo){
     stringa->testo().aggiungi(testo);
 }
 
-
+void Etichetta::decora(const Colore& sfondoEtichetta, const Colore& bordoEtichetta){
+	colora(sfondoEtichetta,ColoreComponente::SFONDO);
+	colora(bordoEtichetta,ColoreComponente::BORDO);
+	abilita(ColoreComponente::SFONDO,true);
+	abilita(ColoreComponente::BORDO,true);
+}

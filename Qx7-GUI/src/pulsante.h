@@ -38,8 +38,8 @@
 /**
  * @file  pulsante.h
  * @author Dr. Domenico della Peruta
- * @date 
- * @version 1.0.0, 03-06-2018
+ * @date 03-06-2018
+ * @version 1.0.1, 15-08-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Pulsante.
  * 
@@ -80,7 +80,11 @@ namespace GUI {
         
         void comportamentoClick(CodiceAzione codice)
         {codiceAzione=codice;}
-        
+        /**
+         * Cambia testo dell'etichetta del pulsante.
+         * @param etichetta
+         */
+        void rinomina(const string& etichetta);
         
     private:
         Punto posizioneCorrenteTesto(const string& etichetta="");
