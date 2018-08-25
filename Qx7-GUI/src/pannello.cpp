@@ -80,7 +80,9 @@ void Pannello::disegna(){
 					area.dimensione().altezza()
 			);
 			Vista::disegna();
+
 			glDisable(GL_SCISSOR_TEST);
+
 			return;
 		}
 	}
@@ -157,5 +159,7 @@ void Pannello::limiteCursoreOrizzontale(int estremoSX){
 	Vista::limiteCursoreOrizzontale(area.origine().x());
 }
 
-
+bool Pannello::eventoLocale(const Cursore& mouse){
+	return Componente::eventoLocale(mouse);//non eredita "Vista::eventoLocale(mouse)"
+}
 

@@ -145,12 +145,12 @@ namespace GUI {
          */
         void posiziona(const OrigineArea& p){area.origine(p);}
         /**
-         * Sposta il focus dell'elemento interno alla vista a quello successivo.
+         * Sposta il focus dell'elemento interno alla vista, a quello successivo.
          * @return ID del nuovo elemento col focus
          */
         size_t passaFocusSuccessivo();
         /**
-         * Sposta il focus dell'elemento interno alla vista a quello precedente.
+         * Sposta il focus dell'elemento interno alla vista, a quello precedente.
          * @return 
          */
         size_t passaFocusPrecedente();
@@ -218,6 +218,13 @@ namespace GUI {
          */
         bool etichetta(pOggetto componente)const
         {return dynamic_pointer_cast<Etichetta>(componente) != nullptr;}
+        /**
+         * Verifica se un componente interno è un Pannello (classe figlia di Vista)
+         * @param componente
+         * @return
+         */
+        bool pannello(pOggetto componente)const
+        {return dynamic_pointer_cast<Vista>(componente) != nullptr;}
         /**
          * Verifica se è visibile la barra scorrimento verticale.
          * @return 
@@ -313,7 +320,15 @@ namespace GUI {
          * @return 
          */
         virtual bool eventoLocale(const Cursore &mouse) override;
-        
+        /**
+         * Verifica se c'è un elemento con il focus attivo
+         * @return
+         */
+        bool elementoFocusAttivo()const;
+        /**
+         * Elimina tutti i focus attivi
+         */
+        void eliminaTuttiFocus();
         
         pMenu menu = nullptr;
         pRettangolo sfondo;

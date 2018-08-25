@@ -169,15 +169,18 @@ void Campo::passaggioMouse(const Cursore& mouse,Stato stato){
 
 
 void Campo::azione(const Mouse& mouse){
+	Componente::azione(mouse);
+	/*
     if(eventoLocale(mouse.posizione())){
         assegnaFocus();
     }
+    */
 }
 
 void Campo::inputTastiera(const Tastiera& tastiera){
     static Testo ultimoCarattere{""};// permette di ricostruire i caratteri multi-byte
     static int nrByte = 0;
-    if(statoFocus()){ 
+    if(statoFocus() && ID() == Componente::idUltimoFocus()){
         switch (tastiera.carattere()) {
             case 127: // tasto 'canc'
                 if(indice > 0){

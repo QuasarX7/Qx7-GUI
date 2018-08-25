@@ -392,9 +392,7 @@ void Vista::inputTastieraSpeciale(const Tastiera& tastiera){
 }
 
 void Vista::spostaComponenti(int dx, int dy){
-       /* spostamento senza condizioni (usato solo dalla metodo stesso) */
-
-	areaPredefinitaVista.origine(
+     areaPredefinitaVista.origine(
 			OrigineArea{
                 areaPredefinitaVista.origine().x() + dx,
                 areaPredefinitaVista.origine().y() + dy
@@ -403,43 +401,57 @@ void Vista::spostaComponenti(int dx, int dy){
 	for(size_t i=0; i < numeroFigli(); i++){
 		pComponente componente = dynamic_pointer_cast<Componente>(figlio(i));
 		if(componente != nullptr){
+			pVista pannello =dynamic_pointer_cast<Vista>(componente);
+			if(pannello != nullptr){
+				pannello->spostaComponenti(dx,dy);
+		 }
 			componente->sposta(
-                    OrigineArea{
-                        componente->origine().x() + dx,
-                        componente->origine().y() + dy
-                    }
+					OrigineArea{
+						componente->origine().x() + dx,
+						componente->origine().y() + dy
+					}
 
 			);
+
 		}
 	}
 	areaComponenti = estensioneAreaComponenti();
 }
 
 size_t Vista::passaFocusSuccessivo(){
-    bool trovato = false;
-    for(size_t i=0; i < numeroFigli(); i++){
-        if(etichetta(figlio(i)))
-            continue;
-        auto componente = dynamic_pointer_cast<Componente>(figlio(i));
-        if(componente != nullptr){ 
-            if(trovato){
-                componente->assegnaFocus();
-                return componente->ID();
-            }
-            if(componente->statoFocus()){
-                trovato = true;
-                if(i == numeroFigli() -1 )
-                    i = 0; // se ultimo passa al primo
-            }
-        
-        }
-    }
-    auto primoComponente = primoComponenteAssociato();
-    if(primoComponente != nullptr){
-        primoComponente->assegnaFocus();
-        return primoComponente->ID();
-    }
-    throw out_of_range{"Errore focus: nessun elemento presente nella 'Vista'."};
+	if(elementoFocusAttivo()){
+		// cerca quale elemento ha il focus attivo
+		bool trovato = false;
+		for(size_t i=0; i < numeroFigli(); i++){
+			auto componente = dynamic_pointer_cast<Componente>(figlio(i));
+			if(etichetta(componente) || pannello(componente)){
+				continue; // le etichette e i pannelli non sono analizzati
+			}
+
+			if(componente != nullptr){
+				if(trovato){// è l'elemento precedente
+					componente->assegnaFocus();
+					return componente->ID();
+
+				}
+				if(componente->statoFocus()){
+					trovato = true;
+					if(i == numeroFigli() -1 )
+						i = -1; // se ultimo passa al primo
+				}
+
+			}
+		}
+		auto primoComponente = primoComponenteAssociato();
+		if(primoComponente != nullptr){
+			primoComponente->assegnaFocus();
+			return primoComponente->ID();
+		}
+		throw out_of_range{"Errore focus: nessun elemento presente nella 'Vista'."};
+	}else{
+		return NO_ID;
+	}
+
 }
 
 
@@ -567,4 +579,31 @@ void Vista::avviaLogo(){
 	);
 
 }
+
+bool Vista::elementoFocusAttivo()const{
+	for(size_t i=0; i < numeroFigli(); i++){
+		if(etichetta(figlio(i)) || pannello(figlio(i)) )
+			continue; // le etichette e i pannelli vengono saltate
+
+		pComponente componente = dynamic_pointer_cast<Componente>(figlio(i));
+		if(componente != nullptr){
+			if(componente->ID() == Componente::idUltimoFocus() ) return true;
+		}
+	}
+	return false;
+}
+
+void Vista::eliminaTuttiFocus(){
+	for(size_t i=0; i < numeroFigli(); i++){
+		auto componente = dynamic_pointer_cast<Componente>(figlio(i));
+		if(componente != nullptr){
+			if(componente->statoFocus()){
+				cout << "->"<< componente->ID()<<endl;
+				componente->eliminaFocus();
+			}
+		}
+	}
+}
+
+
 

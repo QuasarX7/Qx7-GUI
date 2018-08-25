@@ -324,29 +324,30 @@ int main(int argc, char* argv[]) {
 
 	pulsante2->comportamentoClick(clic2);
 
+	pPannello pannelloData = Oggetto::crea<Pannello>(vistaTest4,"calcola data",Area{300,100,300,500});
 
 	pCampoData campoData  = Oggetto::crea<CampoData>(
-			vistaTest4,
+			pannelloData,
 			ID_21,
 			OrigineArea{350,150}
 	);
 
 	pPulsante pulsante3 = Oggetto::crea<Pulsante>(
-			vistaTest4,
+			pannelloData,
 			ID_22,
 			string{"Analizza"},
 			OrigineArea{350,200}
 	);
 
 	pCampoNumerico campoNumero7 = Oggetto::crea<CampoNumerico>(
-			vistaTest4,
+			pannelloData,
 			ID_23,
 			OrigineArea{350,250},
 			(size_t)20
 	);
 
 	pCampoMenu campoMenuGiorni = Oggetto::crea<CampoMenu>(
-			vistaTest4,
+			pannelloData,
 			ID_25,
 			OrigineArea{550,250},
 			vector<string>()={"secondi","minuti","ore","giorni","mesi","anni"}
@@ -355,7 +356,7 @@ int main(int argc, char* argv[]) {
 
 
 	pCampo campo = Oggetto::crea<Campo>(
-			vistaTest4,
+			pannelloData,
 			ID_24,
 			OrigineArea{350,300},
 			(size_t)15
@@ -391,7 +392,19 @@ int main(int argc, char* argv[]) {
 
 	};
 
+	ComportamentoMenu azione = [](int id){
+		switch(id){
+		case 901: cout << "ciaoooo"<<endl;
+		};
+	};
+
+
 	pulsante3->comportamentoClick(clic3);
+
+	pMenu menu = Utili::crea<Menu>(azione);
+	menu->aggiungiVoce((size_t)901,"ciaoooo");
+
+	vistaTest4->aggiungi(menu);
 
     app.aggiungiVista(vistaTest4);
 

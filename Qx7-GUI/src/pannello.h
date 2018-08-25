@@ -83,6 +83,9 @@ namespace GUI{
 		virtual Area estensioneAreaComponenti()const override;
 		virtual void limiteCursoreVerticale(int estremoSup = 0)override;
 		virtual void limiteCursoreOrizzontale(int estremoSX = 0)override;
+
+		virtual bool eventoLocale(const Cursore& mouse)override;
+
 	private:
 
 	};

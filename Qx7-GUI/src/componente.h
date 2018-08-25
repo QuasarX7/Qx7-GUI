@@ -118,14 +118,31 @@ namespace GUI {
         
         DimensioneArea dimensione()const{return area.dimensione();}
 
+        /**
+         * Assegna il focus al componente, togliendolo ad un altro della stessa "vista".
+         */
         virtual void assegnaFocus();
+        /**
+         * Verifica se il componente ha il focus
+         * @return
+         */
         bool statoFocus()const{return focus;}
+        /**
+         * Elimina il focus.
+         */
+        void eliminaFocus(){focus=false;}
+
         /**
          * Verifica che il cursore del mouse sia sul componente.
          * @param mouse
          * @return
          */
         virtual bool eventoLocale(const Cursore& mouse);
+        /**
+         * ID del componente che ha preso l'ultimo focus.
+         * @return
+         */
+        static size_t idUltimoFocus(){return id_focus;}
         
         /* SEGNALI */ 
         /* I segnali vengono emessi dall' "Applicazione" e trasmessi a tutti i "Componenti della 
@@ -139,15 +156,17 @@ namespace GUI {
     protected:
         bool controlloID(size_t ID)const;
         
+
         /* SLOT */
         virtual void passaggioMouse(const Cursore& mouse,Stato stato); // segnale 'coordinateMouse'
         virtual void azione(const Mouse& mouse);  // segnale 'click'
         virtual void inputTastiera(const Tastiera& tastiera); // segnale 'tasto'
         virtual void inputTastieraSpeciale(const Tastiera& tastieraSpeciale); // segnale 'tastoSpeciale'
-       
-        virtual void focusAcquisito(){}
-        virtual void focusCeduto(){}
+
+        virtual void focusAcquisito(){} ///< azione da svolgere quando si acquista il focus
+        virtual void focusCeduto(){}    ///< azione da svolgere quando si perde il focus
         
+
         Area area;
         size_t identificativo;
         bool focus;
@@ -165,6 +184,7 @@ namespace GUI {
         
     private:
         static vector<int> id_componenti;
+        static size_t id_focus;
         
     };
     

@@ -51,6 +51,7 @@ using namespace GUI;
 
 
 vector<int> Componente::id_componenti{};
+size_t Componente::id_focus = NO_ID;
 
 Componente::Componente(size_t ID, const Area& superficie):
 area{superficie},
@@ -145,7 +146,8 @@ void Componente::passaggioMouse(const Cursore& mouse,Stato stato){
 
 void Componente::azione(const Mouse& mouse){
     if(eventoLocale(mouse.posizione())){
-        assegnaFocus();
+    	id_focus = identificativo;
+    	assegnaFocus();
         // trasmetti l'evento azione a tutti i componenti associati
         for(size_t i=0; i < numeroFigli(); i++){
             auto nodo = figlio(i);
@@ -187,7 +189,8 @@ void Componente::inputTastieraSpeciale(const Tastiera& tastieraSpeciale){
 }
         
 void Componente::assegnaFocus(){
-    if(genitore() != nullptr){
+	if(genitore() != nullptr){
+		id_focus = identificativo;
         //cerca vecchio focus e richiama il metodo 'focusCeduto'
         for(size_t i=0; i < genitore()->numeroFigli(); i++){
             auto componente = dynamic_pointer_cast<Componente>(genitore()->figlio(i));
@@ -205,13 +208,16 @@ void Componente::assegnaFocus(){
                 /* assegna 'true' solo a questo elemento e 'false' a gli altri elementi
                    associati al genitore */
                 componente->focus = ( this->ID() == componente->ID() );
-                if(this->ID() == componente->ID())
+                if(this->ID() == componente->ID()){
                     componente->focusAcquisito();
+                }
                 
             }
         }
     }
 }
+
+
         
         
 bool Componente::eventoLocale(const Cursore &mouse){
@@ -226,12 +232,12 @@ bool Componente::eventoLocale(const Cursore &mouse){
 
 void Componente::colora(const Colore& colore, ColoreComponente componente){
     switch(componente){
-        case SFONDO: coloreSfondo = colore; break;
-        case BORDO:  coloreBordo  = colore; break;
-        case TESTO:  coloreTesto  = colore; break;
-        case FOCUS:  coloreFocus  = colore; break;
-        case MOUSE:    coloreEvidenza   = colore; break;
-        case INATTIVO: coloreDisattivo  = colore; break;   
+        case SFONDO: 	coloreSfondo 	= colore; break;
+        case BORDO:  	coloreBordo  	= colore; break;
+        case TESTO:  	coloreTesto  	= colore; break;
+        case FOCUS:  	coloreFocus  	= colore; break;
+        case MOUSE:    	coloreEvidenza  = colore; break;
+        case INATTIVO: 	coloreDisattivo = colore; break;
     };
 }
 
@@ -246,3 +252,4 @@ Colore Componente::colore(ColoreComponente componente)const{
     };
     return NERO;
 }
+

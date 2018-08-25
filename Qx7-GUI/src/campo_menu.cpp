@@ -39,7 +39,7 @@
  * @file  campo_menu.cpp
  * @author Dr. Domenico della Peruta
  * @date 16-08-2018
- * @version 1.0.1, 16-08-2018
+ * @version 1.0.0, 16-08-2018
  *
  * @brief File contenente l'implementazione della classe CampoMenu.
  *
