@@ -40,7 +40,7 @@
  * @file testo.cpp
  * @author Dr. Domenico della Peruta
  * @date 16-12-2017
- * @version 1.0.0, 04-01-2018
+ * @version 1.0.2, 28-08-2018
  * @brief File contenente l'implementazione della classe Testo.
  *
  * 

@@ -39,7 +39,7 @@
  * @file componente.cpp
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.3, 14/08/2018
+ * @version 1.0.4, 28-08-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Componente.
  * 
@@ -146,7 +146,6 @@ void Componente::passaggioMouse(const Cursore& mouse,Stato stato){
 
 void Componente::azione(const Mouse& mouse){
     if(eventoLocale(mouse.posizione())){
-    	id_focus = identificativo;
     	assegnaFocus();
         // trasmetti l'evento azione a tutti i componenti associati
         for(size_t i=0; i < numeroFigli(); i++){

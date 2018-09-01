@@ -39,7 +39,7 @@
  * @file componente.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.1, 15-08-2018
+ * @version 1.0.2, 28-08-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Etichetta.
  * 
@@ -120,7 +120,12 @@ namespace GUI {
          * Testo dell'etichetta.
          * @return
          */
-        Testo testo()const{return stringa->testo();}
+        virtual Testo testo()const override{return stringa->testo();}
+        /**
+         * Rinizializza testo.
+         * @param inputDati
+         */
+        virtual void testo(const Testo& inputDati)override{riscrivi(inputDati.stringa());}
     private:
         /**
          * Se impostato un colore di fondo o uno di bordo, lo applica al disegno.

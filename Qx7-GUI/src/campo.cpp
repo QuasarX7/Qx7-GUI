@@ -39,7 +39,7 @@
  * @file  campo.cpp
  * @author Dr. Domenico della Peruta
  * @date 25-05-2018
- * @version 1.0.3, 16-08-2018
+ * @version 1.0.5, 01-09-2018
  * 
  * @brief File contenente l'implementazione della classe Campo.
  * 
@@ -273,9 +273,11 @@ void Campo::focusCeduto(){
 }
 
 void Campo::testo(const string& stringa){
-	input->testo().elimina();
-	input->testo().aggiungi(stringa);
-	indice = input->testo().numeroCaratteri();
+	Testo testo{stringa};
+	if(testo.numeroCaratteri() > limite)
+		testo = testo.frammento(0,limite);
+	input->testo() = testo;
+	indice = testo.numeroCaratteri();
 }
 
 

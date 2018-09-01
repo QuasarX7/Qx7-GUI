@@ -39,7 +39,7 @@
  * @file  campo_numerico.h
  * @author Dr. Domenico della Peruta
  * @date 02-08-2018
- * @version 1.0.0, 02-08-2018
+ * @version 1.0.1, 01-09-2018
  *
  * @brief File contenente l'intestazione e l'implementazione della classe CampoNulerico.
  *
@@ -74,12 +74,21 @@ class CampoNumerico: public Campo {
 		 */
 		virtual ~CampoNumerico() {}
 		/**
+		 * Inserisci un valore numerico nel campo.
+		 * @param stringa
+		 */
+		virtual void testo(const string& stringa)override;
+
+		/**
 		 * Valore numerico in virgola moblile.
 		 * @return
 		 */
 		virtual double valore()const;
 	protected:
-
+		/**
+		 * Verifica la correttezza dell'input.
+		 * @return
+		 */
 		virtual bool verificaInput()const;
 
 		virtual void inputTastiera(const Tastiera& tastiera)override; ///< segnale input tastiera (tasto)

@@ -40,7 +40,7 @@
  * @file testo.h
  * @author Dr. Domenico della Peruta
  * @date 16-12-2017
- * @version 1.0.1, 12-05-2018
+ * @version 1.0.2, 28-08-2018
  * 
  * @brief File contenente l'intestazione della classe Testo.
  *
@@ -261,10 +261,54 @@ namespace Utili {
          * @param tipo
          * @return 
          */
+        /**
+		 * @fn bool operator ==(const Testo& t1,const string& t2)
+		 * @brief Metodo operatore di confronto di uguagianza tra un testo e una stringa, implementato in linea.
+		 *
+		 * @param inizio
+		 * @param lunghezza
+		 * @param tipo
+		 * @return
+		 */
+        /**
+		 * @fn bool operator ==(const string& t1,const Testo& t2)
+		 * @brief Metodo operatore di confronto di uguagianza tra una stringa e un testo, implementato in linea.
+		 *
+		 * @param inizio
+		 * @param lunghezza
+		 * @param tipo
+		 * @return
+		 */
+        /**
+		 * @fn bool operator !=(const Testo& t1,const string& t2)
+		 * @brief Metodo operatore di confronto di disuguagianza tra un testo e una stringa, implementato in linea.
+		 *
+		 * @param inizio
+		 * @param lunghezza
+		 * @param tipo
+		 * @return
+		 */
+		/**
+		 * @fn bool operator !=(const string& t1,const Testo& t2)
+		 * @brief Metodo operatore di confronto di disuguagianza tra una stringa e un testo, implementato in linea.
+		 *
+		 * @param inizio
+		 * @param lunghezza
+		 * @param tipo
+		 * @return
+		 */
         friend bool operator ==(const Testo& t1,const Testo& t2)
         {return t1.testo == t2.testo;}
         friend bool operator !=(const Testo& t1,const Testo& t2)
         {return !(t1 == t2);}
+        friend bool operator ==(const Testo& t1,const string& t2)
+		{return t1.testo == t2;}
+        friend bool operator ==(const string& t1,const Testo& t2)
+        {return t2 == t1;}
+		friend bool operator !=(const Testo& t1,const string& t2)
+		{return !(t1 == t2);}
+		friend bool operator !=(const string& t1,const Testo& t2)
+		{return !(t1 == t2);}
         /**
          * Metodo operatore di flusso stream d'inserimento, implementato in linea.
          * @param inizio

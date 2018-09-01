@@ -39,7 +39,7 @@
  * @file  pulsante.cpp
  * @author Dr. Domenico della Peruta
  * @date 03-06-2018
- * @version 1.0.1, 15-08-2018
+ * @version  1.0.2, 28-08-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Pulsante.
  * 
@@ -66,7 +66,7 @@ codiceAzione{nullptr}
     
     bordoFocus = Utili::crea<Rettangolo>(*figura.get());
     
-    testo = Utili::crea<Stringa>(
+    testoEtichetta = Utili::crea<Stringa>(
         etichetta,
         posizioneCorrenteTesto(etichetta),
         coloreTesto
@@ -82,7 +82,7 @@ Pulsante::Pulsante(size_t ID, const string& etichetta,const OrigineArea& posizio
 Punto Pulsante::posizioneCorrenteTesto(const string& etichetta){
     size_t numeroCaratteri = etichetta.size();
     if(etichetta.size() == 0)
-        numeroCaratteri = testo->testo().numeroCaratteri();
+        numeroCaratteri = testo().numeroCaratteri();
     double xTesto = area.origine().x() + area.dimensione().lunghezza()/2.0 - numeroCaratteri * 4.0;
     double yTesto = area.origine().y() + area.dimensione().altezza()/2.0 + 4.0;
     
@@ -97,10 +97,10 @@ void Pulsante::disegna(){
     bordoFocus->sfondo(coloreFocus);
     
     // disegna
-    if(area.dimensione().altezza() >= 15 && area.dimensione().lunghezza() >= (testo->testo().numeroCaratteri()+1) * 8){
-        testo->posiziona(posizioneCorrenteTesto());
-        testo->sfondo(coloreTesto);
-        testo->disegna();
+    if(area.dimensione().altezza() >= 15 && area.dimensione().lunghezza() >= (testo().numeroCaratteri()+1) * 8){
+        testoEtichetta->posiziona(posizioneCorrenteTesto());
+        testoEtichetta->sfondo(coloreTesto);
+        testoEtichetta->disegna();
     }
     figura->disegna();
     
@@ -169,6 +169,6 @@ void Pulsante::inputTastiera(const Tastiera& tastiera){
 
 
 void Pulsante::rinomina(const string& etichetta){
-	if(testo != nullptr)
-		testo->testo() = etichetta;
+	if(testoEtichetta != nullptr)
+		testoEtichetta->testo() = etichetta;
 }

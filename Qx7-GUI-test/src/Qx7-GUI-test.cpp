@@ -391,21 +391,21 @@ int main(int argc, char* argv[]) {
 		}
 
 	};
-
+/*
 	ComportamentoMenu azione = [](int id){
 		switch(id){
 		case 901: cout << "ciaoooo"<<endl;
 		};
 	};
 
-
+*/
 	pulsante3->comportamentoClick(clic3);
 
-	pMenu menu = Utili::crea<Menu>(azione);
+/*	pMenu menu = Utili::crea<Menu>(azione);
 	menu->aggiungiVoce((size_t)901,"ciaoooo");
 
 	vistaTest4->aggiungi(menu);
-
+*/
     app.aggiungiVista(vistaTest4);
 
 

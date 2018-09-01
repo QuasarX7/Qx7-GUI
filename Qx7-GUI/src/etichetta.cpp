@@ -39,7 +39,7 @@
  * @file componente.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.1, 15-08-2018
+ * @version 1.0.2, 28-08-2018
  * 
  * @brief File contenente l'implementazione dei metodi della classe Etichetta.
  * 

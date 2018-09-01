@@ -39,7 +39,7 @@
  * @file  campo_numerico.cpp
  * @author Dr. Domenico della Peruta
  * @date 02-08-2018
- * @version 1.0.0, 02-08-2018
+ * @version 1.0.1, 01-09-2018
  *
  * @brief File contenente l'implementazione dei metodi della classe CampoNulerico.
  *
@@ -81,11 +81,22 @@ double CampoNumerico::valore()const{
 
 bool CampoNumerico::verificaInput()const{
 	string stringa = input->testo().latino1();
-	if(stringa.length() != mascheraInput.stringa().length()) return false;
-	if(stringa.compare(mascheraInput.stringa())==0)return false;
+	if(mascheraInput.stringa().length() > 0){//se c'è la maschera attiva
+		if(stringa.length() != mascheraInput.stringa().length()) return false;
+		if(stringa.compare(mascheraInput.stringa())==0)return false;
+	}
 	for(auto i=0; i < stringa.length(); i++){
 		if((stringa[i] < '0' || stringa[i] > '9') && stringa[i] != separatore ) return false;
 	}
 	return true;
 
+}
+
+void CampoNumerico::testo(const string& stringa){
+	Campo::testo(stringa);//tronca se lunga...
+	if(!verificaInput()){//input errato
+		input->testo().elimina();
+		input->testo().aggiungi(mascheraInput.stringa());
+		indice = 0;
+	}
 }

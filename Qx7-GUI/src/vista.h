@@ -39,7 +39,7 @@
  * @file vista.h
  * @author Dr. Domenico della Peruta
  * @date 04-05-2018
- * @version 1.0.2, 12-08-2018
+ * @version 1.0.4, 01-09-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Vista.
  * 
@@ -49,10 +49,15 @@
 #ifndef vista_h
 #define vista_h
 
+#include <string>
 #include <iostream>
 #include <memory>
 #include <chrono>
+#include <cmath>
 using namespace std;
+
+#include "terminale.h"
+using namespace Sistema;
 
 #include "rettangolo.h"
 #include "galassia.h"
@@ -62,8 +67,7 @@ using namespace Grafica;
 #include "etichetta.h"
 #include "menu.h"
 
-#include <cmath>
-using namespace std;
+
 
 
 namespace GUI {
@@ -196,10 +200,26 @@ namespace GUI {
          * @param abilita
          */
         void abilitaInfoDebug(bool abilita){abilitaDebug = abilita;}
-
+        /**
+         * Restituisce il titolo della finestra.
+         * @return
+         */
+        virtual Testo testo()const override{return Testo{titolo};}
+        /**
+         * Reimposta titolo...
+         * @param inputDati
+         */
+        virtual void testo(const Testo& inputDati)override{titolo = inputDati.stringa();}
     private:
         bool abilitaDebug = false;///< abilita disegno info di debug
-        
+
+        static void incolla(Vista* vista);
+
+        static void copia(Vista* vista);
+
+
+
+
     protected:
         const double spessore = 8.0;///< spessore della sfumatura di colore dello sfondo
         const double spessoreBarra = 20.0;
@@ -329,6 +349,10 @@ namespace GUI {
          * Elimina tutti i focus attivi
          */
         void eliminaTuttiFocus();
+        /**
+         * Crea un menu a tendina mause predefinito, con le azioni di default.
+         */
+        void creaMenu();
         
         pMenu menu = nullptr;
         pRettangolo sfondo;

@@ -39,7 +39,7 @@
  * @file  pulsante.h
  * @author Dr. Domenico della Peruta
  * @date 03-06-2018
- * @version 1.0.1, 15-08-2018
+ * @version 1.0.2, 28-08-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Pulsante.
  * 
@@ -85,7 +85,13 @@ namespace GUI {
          * @param etichetta
          */
         void rinomina(const string& etichetta);
-        
+
+        virtual Testo testo()const override{return  (testoEtichetta != nullptr) ? testoEtichetta->testo() : Testo{};}
+        /**
+         * Cambia testo dell'etichetta del pulsante.
+         * @param inputDati
+         */
+        virtual void testo(const Testo& inputDati)override{rinomina(inputDati.stringa());}
     private:
         Punto posizioneCorrenteTesto(const string& etichetta="");
         
@@ -97,7 +103,7 @@ namespace GUI {
         
         
         pRettangolo figura, bordoFocus;
-        pStringa testo;
+        pStringa testoEtichetta;
         
         CodiceAzione codiceAzione;
     

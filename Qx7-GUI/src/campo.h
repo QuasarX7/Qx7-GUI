@@ -39,7 +39,7 @@
  * @file  campo.h
  * @author Dr. Domenico della Peruta
  * @date 25-05-2018
- * @version 1.0.3, 16-08-2018
+ * @version 1.0.5, 01-09-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Campo.
  * 
@@ -111,12 +111,17 @@ namespace GUI {
          * Testo di caratteri inserito nel campo.
          * @return 
          */
-        string testo()const{return input->testo().stringa();}
+        virtual Testo testo()const override{return input->testo();}
         /**
          * Imposta il testo da visualizzare nel campo.
          * @param stringa
          */
-        void testo(const string& stringa);
+        virtual void testo(const string& stringa);
+        /**
+		 * Imposta il testo da visualizzare nel campo.
+		 * @param inputDati
+		 */
+		virtual void testo(const Testo& inputDati)override{testo(inputDati.stringa());}
         /**
          * Assegna il codice da eseguiri quando il campo acquisisce il focus
          * @param codice

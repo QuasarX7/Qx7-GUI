@@ -39,7 +39,7 @@
  * @file vista.cpp
  * @author Dr. Domenico della Peruta
  * @date 04-05-2018
- * @version 1.0.2, 12-08-2018
+ * @version 1.0.4, 01-09-2018
  * 
  * @brief File contenente l'implementazione delle metodi della classe Vista.
  * 
@@ -49,9 +49,12 @@
 #include "vista.h"
 using namespace GUI;
 
+
 Vista::Vista(const string& titoloFinestra,const Area& campo,const Colore& colore,const Colore& sfumatura)
 :Componente{0,campo},areaComponenti{},areaPredefinitaVista{OrigineArea{0,0},campo.dimensione()},titolo{titoloFinestra}
 {
+	creaMenu();
+
     coloreSfondo = colore;
     coloreBordoInattivo = colore.combina(sfumatura);
     
@@ -605,5 +608,76 @@ void Vista::eliminaTuttiFocus(){
 	}
 }
 
+void Vista::creaMenu(){
+	static const size_t TAGLIA  = 900;
+	static const size_t COPIA   = 901;
+	static const size_t INCOLLA = 902;
+	static const size_t ELIMINA = 903;
 
+	static Vista* vista=nullptr;
+	if(genitore() == nullptr)
+		vista=this;
+	else
+		return;
+	ComportamentoMenu azione = [](int id){
+		switch(id){
+		case TAGLIA: cout << "taglia"<<endl; break;
+		case COPIA:
+			copia(vista);
+			break;
+		case INCOLLA:
+			incolla(vista);
+			break;
+		case ELIMINA: cout << "elimina"<<endl; break;
+		};
+	};
+	menu = Utili::crea<Menu>(azione);
+	menu->aggiungiVoce(TAGLIA,"Taglia");
+	menu->aggiungiVoce(COPIA,"Copia");
+	menu->aggiungiVoce(INCOLLA,"Incolla");
+	menu->aggiungiVoce(ELIMINA,"Elimina");
+
+}
+
+
+void Vista::incolla(Vista* vista){
+	for(size_t i=0; i < vista->numeroFigli(); i++){
+	    auto componente = dynamic_pointer_cast<Componente>(vista->figlio(i));
+		if(componente != nullptr){
+			if(componente->ID() != NO_ID)
+				if(componente->ID() == Componente::idUltimoFocus() ){
+					if(!vista->etichetta(componente) && !vista->pannello(componente) ){
+						componente->testo(Terminale::valoreInMemoria() );
+					}
+					return;
+				}
+
+		}
+	}
+	auto vistaMadre = dynamic_pointer_cast<Vista>(vista->genitore());
+	if(vistaMadre != nullptr){
+		incolla(vistaMadre.get());
+	}
+}
+
+void Vista::copia(Vista* vista){
+	for(size_t i=0; i < vista->numeroFigli(); i++){
+		auto componente = dynamic_pointer_cast<Componente>(vista->figlio(i));
+		if(componente != nullptr){
+			if(componente->ID() != NO_ID)
+				if(componente->ID() == Componente::idUltimoFocus() ){
+					if(!vista->etichetta(componente) && !vista->pannello(componente) ){
+						Terminale::valoreDaMemorizzare(componente->testo());
+					}
+					return;
+				}
+		}
+	}
+	auto vistaMadre = dynamic_pointer_cast<Vista>(vista->genitore());
+	if(vistaMadre != nullptr){
+		copia(vistaMadre.get());
+	}
+
+
+}
 

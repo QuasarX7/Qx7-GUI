@@ -39,7 +39,7 @@
  * @file pannello.h
  * @author Dr. Domenico della Peruta
  * @date 02-08-2018
- * @version 1.0.0, 02-08-2018
+ * @version 1.0.1, 28-08-2018
  *
  * @brief File contenente l'intestazione e l'implementazione delle metodi della classe Pannello.
  *
@@ -72,6 +72,7 @@ namespace GUI{
 		 * @throw logic_error		quando la vista a cui appartiene la vista non è definita correttamente.
 		 */
 		virtual void disegna()override;
+
 	protected:
 		/**
 		 * Posiziona lo sfondo del pannello in base alle coordinate assegnate del primo vertice.

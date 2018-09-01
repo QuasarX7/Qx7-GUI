@@ -39,7 +39,7 @@
  * @file componente.h
  * @author Dr. Domenico della Peruta
  * @date 
- * @version 1.0.3, 14/08/2018
+ * @version 1.0.4, 28-08-2018
  * 
  * @brief File contenente l'intestazione e l'implementazione della classe Componente.
  * 
@@ -60,6 +60,7 @@ using namespace Grafica;
 
 #include "area.h"
 #include "oggetto.h"
+#include "testo.h"
 using namespace Utili;
 
 #include "segnale.h"
@@ -91,7 +92,9 @@ namespace GUI {
     	 * @param superficie
     	 */
         Componente(size_t ID, const Area& superficie);
-        
+        /**
+         * Distruttore
+         */
         virtual ~Componente(){}
         
         size_t ID()const{return identificativo;}
@@ -131,7 +134,15 @@ namespace GUI {
          * Elimina il focus.
          */
         void eliminaFocus(){focus=false;}
-
+        /**
+         * Dati (input/output) contenuti nel componente.
+         * @return
+         */
+        virtual Testo testo()const=0;
+        /**
+         * Dati di inizializzazione componente.
+         */
+        virtual void testo(const Testo& datiInput)=0;
         /**
          * Verifica che il cursore del mouse sia sul componente.
          * @param mouse

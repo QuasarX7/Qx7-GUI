@@ -39,7 +39,7 @@
  * @file pannello.cpp
  * @author Dr. Domenico della Peruta
  * @date 02-08-2018
- * @version 1.0.0, 02-08-2018
+ * @version  1.0.1, 28-08-2018
  *
  * @brief File contenente l'implementazione delle metodi della classe Pannello.
  *
@@ -92,7 +92,6 @@ void Pannello::disegna(){
 void Pannello::infoDebug(){
     pStringa s = Utili::crea<Stringa>(debug(),Punto{area.origine().x()+10.0,area.origine().y()+10.0},BIANCO);
     s->disegna();
-    //Rettangolo r{BLU,ROSSO,areaComponenti};r.disegna();
 }
 
 Area Pannello::estensioneAreaComponenti()const{
